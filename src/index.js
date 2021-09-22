@@ -2,9 +2,7 @@ import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-ReactDOM.render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
-    document.querySelector('#root')
-)
+ReactDOM.render(<App />, document.querySelector('#root'))
+
+/* <StrictMode>
+    </StrictMode> */
