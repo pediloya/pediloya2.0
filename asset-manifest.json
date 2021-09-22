@@ -1,0 +1,36 @@
+{
+  "files": {
+    "static/css/0.0440f8c5.chunk.css": "/pediloya2.6/static/css/0.0440f8c5.chunk.css",
+    "static/js/0.65d3c142.chunk.js": "/pediloya2.6/static/js/0.65d3c142.chunk.js",
+    "static/js/0.65d3c142.chunk.js.map": "/pediloya2.6/static/js/0.65d3c142.chunk.js.map",
+    "main.css": "/pediloya2.6/static/css/main.d85aaa53.chunk.css",
+    "main.js": "/pediloya2.6/static/js/main.a01e8896.chunk.js",
+    "main.js.map": "/pediloya2.6/static/js/main.a01e8896.chunk.js.map",
+    "runtime-main.js": "/pediloya2.6/static/js/runtime-main.a6b3abb6.js",
+    "runtime-main.js.map": "/pediloya2.6/static/js/runtime-main.a6b3abb6.js.map",
+    "static/css/3.f2512455.chunk.css": "/pediloya2.6/static/css/3.f2512455.chunk.css",
+    "static/js/3.cfb3bfde.chunk.js": "/pediloya2.6/static/js/3.cfb3bfde.chunk.js",
+    "static/js/3.cfb3bfde.chunk.js.map": "/pediloya2.6/static/js/3.cfb3bfde.chunk.js.map",
+    "static/js/4.61b1881a.chunk.js": "/pediloya2.6/static/js/4.61b1881a.chunk.js",
+    "static/js/4.61b1881a.chunk.js.map": "/pediloya2.6/static/js/4.61b1881a.chunk.js.map",
+    "static/js/5.0ec97a53.chunk.js": "/pediloya2.6/static/js/5.0ec97a53.chunk.js",
+    "static/js/5.0ec97a53.chunk.js.map": "/pediloya2.6/static/js/5.0ec97a53.chunk.js.map",
+    "static/js/6.e7c3af40.chunk.js": "/pediloya2.6/static/js/6.e7c3af40.chunk.js",
+    "static/js/6.e7c3af40.chunk.js.map": "/pediloya2.6/static/js/6.e7c3af40.chunk.js.map",
+    "static/js/7.c242df8d.chunk.js": "/pediloya2.6/static/js/7.c242df8d.chunk.js",
+    "static/js/7.c242df8d.chunk.js.map": "/pediloya2.6/static/js/7.c242df8d.chunk.js.map",
+    "index.html": "/pediloya2.6/index.html",
+    "static/css/0.0440f8c5.chunk.css.map": "/pediloya2.6/static/css/0.0440f8c5.chunk.css.map",
+    "static/css/3.f2512455.chunk.css.map": "/pediloya2.6/static/css/3.f2512455.chunk.css.map",
+    "static/css/main.d85aaa53.chunk.css.map": "/pediloya2.6/static/css/main.d85aaa53.chunk.css.map",
+    "static/js/3.cfb3bfde.chunk.js.LICENSE.txt": "/pediloya2.6/static/js/3.cfb3bfde.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/pediloya2.6/static/media/glyphicons-halflings-regular.e3cab037.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a6b3abb6.js",
+    "static/css/3.f2512455.chunk.css",
+    "static/js/3.cfb3bfde.chunk.js",
+    "static/css/main.d85aaa53.chunk.css",
+    "static/js/main.a01e8896.chunk.js"
+  ]
+}
