@@ -18,7 +18,7 @@ const App = () => {
             <AuthProvider>
                 <EquipoProvider>
                     <DescargasProvider>
-                        <Router basename={'/pediloya2.6'}>
+                        <Router basename={'/pediloya2.0'}>
                             <UserDataProvider>
                                 <Navbar />
                                 <Main />
