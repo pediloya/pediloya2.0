@@ -30,7 +30,7 @@ jobs:
               run: npm install
             - name: Deploy to GH Pages
               run: |
-                  git config --global user.email coalovaboris@gmail.com
-                  git config --global user.name bcoalova
+                  git config --global user.email pediloya.mingob@gmail.com
+                  git config --global user.name pediloya
                   git remote set-url origin https://${{secrets.ACCESS_TOCKEN_GITHUB}}@github.com/pediloya/pediloya2.0.git
                   npm run deploy
