@@ -8,7 +8,7 @@ const CrearUsuario = () => {
             <div className='mainIntro'>
                 <h1>Crear usuario!</h1>
                 <p>
-                    Podés crear usuarios para un <strong>área</strong>, para un integrante del{' '}
+                    Podéss crear usuarios para un <strong>área</strong>, para un integrante del{' '}
                     <strong>equipo de Comunicación</strong> o usuarios
                     <strong> Administradores</strong>.
                 </p>
