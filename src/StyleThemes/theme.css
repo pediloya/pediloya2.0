@@ -1,0 +1,9 @@
+:root {
+    --black: hsl(0, 0%, 30%);
+    --white: hsl(0, 0%, 100%);
+    --grey: hsl(0, 0%, 98%);
+    --primary-clr: hsl(47, 96%, 67%);
+    --primary-clr-darken: hsl(47, 96%, 52%);
+    --secondary-clr: hsl(190, 80%, 49%);
+    --secondary-clr-darken: hsl(190, 80%, 39%);
+}

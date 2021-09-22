@@ -1,0 +1,187 @@
+31/08/2021
+
+=> CAMBIAR NOMBRE DE USUARIO EN PEDIDODETAILAUTOR.js POR EL NOMBRE DE USUARIO QUE VIENE DE AUTH (AHORA TE MUESTRA EL MISMO NOMBRE DEL USUARIO QUE ESTA VIENDO EL PEDIDO)
+
+Para reunión con Equipo: 
+
+=> HABLAR CON MARIAN Y EL CHINO PARA CERRAR VISUALIZACIÓN RÁPIDA DE PEDIDOS DE DISEÑO. 
+
+• QUE CAMPOS SON IMPRESINDIBLES PARA UN PEDIDO? ES POSIBLE SIMPLIFICAR DE ALGUNA MANERA LOS CAMPOS QUE LE SOLICITAMOS COMPLETAR A LAS ÁREAS? 
+
+• EN LA LISTA DE VISUALIZACIÓN RÁPIDA, QUE CAMPOS LES GUSTARÍA TENER A DISPOSICIÓN PARA PODER HACER UNA REVISIÓN RÁPIDA DE LOS PEDIDOS, TENIENDO EN CUENTA QUE CON UN SOLO CLIC PODRÁN VER EL PEDIDO COMPLETO. (El área - la fecha de creación - la fecha de entrega, el tipo de pieza y que más?)
+
+• QUE PIENSAN DE TENER LA POSIBILIDAD DE MODIFICAR EL ESTADO DE LOS PEDIDOS:
+    
+    ► Nuevo pedido: Creado (así es por defecto)
+    ► Pedido tomado: En curso (Cuando el pedido ya está tomado por alguien del equipo) (Este cambio lo deberá realizar alguien del equipo de comunicación)
+    ► Pedido terminado: Finalizado (Cuando se le entregó al área) (Este cambio lo deberá realizar alguien del equipo de comunicación)
+    ► Pedido cerrado: Cerrado (Si el área está de acuerdo con que este finalizado) (Este cambio lo deberá realizar alguien del equipo de del área que realizo el pedido)
+        - Posibilidad de que el pedido se cierre autómaticamente a los 7 días de haber sido finalizado
+    
+    ¿Consideran que estaría bueno poder mostrarle a las áreas quien tomo el pedido? O es mejor mantener esa información solo visible para el equipo de Comunicación como es ahora. 
+
+• Que pasa con los pedidos Finalizados, para ordenar un poco la plataforma y que no se llegue a tener un sinfin de pedidos acumulados en el tiempo, en la sección de pedido solo se mostrarán pedidos Creados, En curso y Finalizados. 
+¿Les parece necesario tener una forma de acceder a los pedidos finalizados? O es muy raro que necesiten acceso a ellos. 
+De ser necesario, quieren poder visualizarlos dentro de la plataforma o tener una forma de descargarlos en algun tipo de planilla, tipo excel? 
+
+• Cuantos pedidos en simultaneo suele haber de diseño? (Creados + En curso + Finalizados)
+
+• Consideran que esta bueno tener la posibilidad de variar el lapso de tiempo más cercano que las áreas pueden realizar un pedido, hoy en día es 10 días. Se podría sumar la funcionalidad para que alguien del equipo de comunicación cambie ese lapso de tiempo por ejemplo a 5 días / 10 días / 15 días. De esta manera por ejemplo en casos de que alguien del equipo este de vacaciones o este trabajando en algo muy grande pueda alargar ese lapso y de esta manera tener un mayor control sobre los tiempos. 
+
+---
+
+La idea principal de esta nueva plataforma es que sea lo más autógestionada posible, sin la necesidad de tener que contar con conocimientos de programación para por ejemplo crear un usuario (ya sea para un área o un nuevo integrante del equipo de comunicación) o poder subir a la misma archivos que pueden ser de utilidad para las áreas como pueden ser diferentes Manuales de Marca o contenidos, el manual de uso de la misma plataforma, tipografías, logos, etc.. 
+
+Además todos los miembros del equipo de Comunicación vamos a poder visibilizar los pedidos que están en proceso, y tener un control sobre las notificaciones que recibimos por email de cada tipo pedido (para esto será importante completar la info personal en la sección de "cuenta"). Esto suma al factor de la autogestión. 
+
+También cualquier integrante del equipo de comunicación podrá crear usuarios, que serán siempre de dos tipos, usuarios que pueden solicitar pedidos y visibilizarlos (usuarios para las áreas, solo verán sus propios pedidos), y usuarios que pueden visibilizar pedidos (todos los pedidos), subir archivos para descargar y crear integrantes dentro de la página de contacto (donde se visibilizan los integrantes de equipo de comunicación)
+    La creación de usuarios del tipo "Equipo de comunicación" también permitirá que por ejemplo se le de acceso a superiores para que puedan hacer un relevamiento del trabajo del equipo (por ejemplo darle acceso a Fede, si así lo desea para poder hacer un seguimiento de nuestro trabajo diario)
+
+La plataforma permitirá también a todos los usuarios modificar la contraseña. 
+
+Para el caso de usuarios de repartición, cada pedido que realicen se guardará la información personal que completen (nombre, email y emails para copia) en cada pedido, de esta manera podrán en lugar de volver a completar esa información nuevamente seleccionar dentro de un desplegable información que ya hayan completado en otros pedidos, lo que evitará errores a la hora de completar sus datos lo que hoy genera que muchas veces los mails de notificación reboten por que el correo fue ingresado incorrectamente
+
+Cabe destacar que toda la plataforma funciona en tiempo real, esto quiere decir que si estamos mirando por ejemplo la lista de pedidos y un área realiza un nuevo pedido no es necesario actualizar para poder visualizarlo, el mismo aparecerá autómaticamente dentro de la plataforma. 
+
+SEGURIDAD: La plataforma estará corriendo como backend Google Firebase, que estará manejando tanto el login como la base de datos que tendra dentro información sobre los usuarios, todos los pedidos, los archivos para descargar y la información del equipo de comunicación (nombre, tel, puesto y correo electrónico).
+Esta base de datos es cerrada y solo puede ser accesible una ves el usuario se haya logueado a la plataforma. 
+En este caso se utilizaran dos servicios de firebase: 
+    ► Firebase Authentication que se encargará de la creación de usuarios y la gestión del login / logout 
+    ► Firebase Firestore que se encargará de la base de datos. 
+        *Firestore es un servicio cuasi gratuito de base de datos, tiene un limite de 20000 escrituras por día, y 50000 lecturas por día. Se tendrán que hacer algunas pruebas pero por lo que estuve probando yo mientras la iba desarrollando nunca llegue a superar las 30 escrituras en un día (que fue justamente cuando estaba trabajando en los pedidos) y las 400 lecturas por día, la diferencia es así de marcada por que las lecturas se dan para los pedidos, la información de contactos del equipo, la información del usuario y los archivos de descarga. 
+    ► Firebase Storage, este es el servicio de firebase que menos vamos a utilizar por que tiene un limite mucho más chico, siendo que el espacio en la "nube" es siempre más preciado para este tipo de servicios google solo nos brinda un total de 5gb para almacenar contenido, por lo que lo estaremos utilizando solo para lo que son archivos de descarga que pueden ser de utilidad para las áreas (manuales, etc). Este limite es la razón por la cual no estaremos utilizando este servicio para los pedidos en si, y seguiremos solicitando a las áreas que si nos quieren compartir un archivo lo hagan a traves de Google Drive, donde el espacio es personal de cada cuenta de gmail. 
+Desde un principio haya por 2016 cuando creamos la versión actual con Lala, si bien podríamos haber solicitado algún tipo de presupuesto siempre fue nuestra intención que se pueda realizar sin necesidad de pagar (salvo por el dominio pediloya.club que son $200 por año, o sea $16 por mes que la verdad no me hace más pobre por salir de mi bolsillo)
+
+
+
+
+
+
+
+OLD STUFF =>
+
+/login
+        => 
+            user dgrc@pediloya.reparticion
+            password DGRC620
+            ||
+            user chino@pediloya.equipo
+            password CHINO620
+            ||
+            user admin@pediloya.admin
+            password admin1234
+
+    /
+        => if .reparticion 
+            cargar firestore de la reparticion
+                referentes ? mostrar referentes : crear referente
+                pedidos ? mostrar pedidos : crear pedido
+
+        => if .equipo
+            cargar todos los pedidos
+                mostrar pedidos
+
+        => if .admin
+            cargar todos los pedidos
+                mostrar pedidos
+            signup
+                crear usuarios
+
+    /cuenta
+        => todas
+            cambiar display name
+            cambiar password
+
+    if .reparticion
+        /referentes
+            => 
+                crear referentes
+                editar referentes
+                borrar referentes
+
+    /pedidos
+
+        => if .reparticion 
+            mostrar pedidos de la reparticion
+
+        => if .equipo
+            mostrar todos pedidos
+
+        => if .admin
+            mostrar todos pedidos
+
+    if .reparticion
+        /crear-pedidos
+            => crear pedidos
+
+
+    if. admin
+        /signup
+
+
+    STATIC FOR ALL
+
+        /manuales
+        /equipo
+
+-----------------------------------
+
+► Tipo de Pieza: 
+	• digital, 
+	• impresa , 
+	• ambas
+► Fecha de Entrega del Original: date
+► Especificaciones: text input
+► Texto para la pieza: 
+	• upload Documentos / link drive
+► Imagenes o Referencias :
+	• upload Archivos multimedia/ link drive
+► Observaciones: text input
+
+-----------------------------------
+
+► Tipo de Publicación: 
+	• facebook
+	• twitter
+	• ambas
+► Fecha de publicación en facebook: date
+► Especificaciones: text input
+► Texto para la publicación:
+	• upload Documentos / link drive
+► Imagenes o video:
+	• upload Archivos multimedia/ link drive
+► Observaciones:text input
+
+-----------------------------------
+
+► Tipo de pedido: 
+	• Creacion de contenido
+        ► Enlace a la página donde se deberá crear el contenido (dejar en blanco en el caso de noticia web)
+        ► Fecha de publicación: date
+        ► Titulo
+        ► Descripción
+        ► Cuerpo
+	• Cambio
+        ► Enlace a la página donde se deberá modificar el contenido
+        ► Texto: 
+            • upload Documentos / link drive
+► Imagenes o Referencias :
+    • upload Archivos multimedia/ link drive   
+► Observaciones: text input
+
+-----------------------------------
+
+► Tipo de pedido: 
+	• ¿Te enteraste?
+	• Entre Nos
+	• ¡No te lo pierdas!
+► Texto: 
+	• upload Documentos / link drive
+► Imagenes o Referencias :
+	• upload Archivos multimedia/ link drive   
+► Observaciones: text input
+
+
+
+
+
