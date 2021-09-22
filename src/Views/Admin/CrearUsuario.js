@@ -6,7 +6,7 @@ const CrearUsuario = () => {
     return (
         <Container fluid as='main'>
             <div className='mainIntro'>
-                <h1>Crear usuario</h1>
+                <h1>Crear usuario!</h1>
                 <p>
                     Podés crear usuarios para un <strong>área</strong>, para un integrante del{' '}
                     <strong>equipo de Comunicación</strong> o usuarios

@@ -1,0 +1,36 @@
+name: pediloya2.0
+on:
+    push:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [10.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install Packages
+              run: npm install
+              env:
+                  REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+                  REACT_APP_API_YOUR_SERVICE_ID: ${{ secrets.REACT_APP_API_YOUR_SERVICE_ID }}
+                  REACT_APP_API_YOUR_TEMPLATE_ID: ${{ secrets.REACT_APP_API_YOUR_TEMPLATE_ID }}
+                  REACT_APP_API_YOUR_TEMPLATE_PEDIDO_ID: ${{ secrets.REACT_APP_API_YOUR_TEMPLATE_PEDIDO_ID }}
+                  REACT_APP_API_YOUR_USER_ID: ${{ secrets.REACT_APP_API_YOUR_USER_ID }}
+                  REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
+                  REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
+                  REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
+                  REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
+                  REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET }}
+            - name: Deploy to GH Pages
+              run: |
+                  git config --global user.email ${{secrets.EMAIL_GITHUB}}
+                  git config --global user.name ${{secrets.USER_NAME_GITHUB}}
+                  git remote set-url origin https://${{secrets.ACCESS_TOCKEN_GITHUB}}@github.com/${{secrets.USER_NAME_GITHUB}}/pediloya2.0.git
+                  npm run deploy
