@@ -33,4 +33,4 @@ jobs:
                   git config --global user.email coalovaboris@gmail.com
                   git config --global user.name bcoalova
                   git remote set-url origin https://${{secrets.THE_TOKEN}}@github.com/pediloya/pediloya2.0.git
-                  npm run deploy
+                  npm run build
