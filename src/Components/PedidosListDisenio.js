@@ -15,6 +15,7 @@ const PedidosListDisenio = ({ pedidos, setPedido }) => {
             </thead>
             <tbody>
                 {pedidos.map((pedido, i) => {
+                    if (!pedido.pedido === 'disenio') return
                     if (pedido.pedido === 'disenio')
                         return (
                             <tr key={i} onClick={() => setPedido(pedido)}>

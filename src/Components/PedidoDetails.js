@@ -10,7 +10,7 @@ import PedidoDetailsSomos from './PedidoDetailsSomos'
 import PedidoDetailsRedes from './PedidoDetailsRedes'
 
 const PedidoDetails = ({ pedido }) => {
-    const { userType } = useAuth()
+    /* const { userType } = useAuth() */
 
     return (
         <>

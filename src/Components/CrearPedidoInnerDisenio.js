@@ -19,7 +19,7 @@ const CrearPedidoInnerDisenio = () => {
         if (!teamMembers) return
         teamMembers.map(indiv => {
             if (!indiv.disenio.on) return
-            setTeamMemberEmails(teamMemberEmails => [...teamMemberEmails, indiv.email])
+            return setTeamMemberEmails(teamMemberEmails => [...teamMemberEmails, indiv.email])
         })
     }, [teamMembers])
 
@@ -69,7 +69,13 @@ const CrearPedidoInnerDisenio = () => {
 
     return (
         <>
-            <iframe name='hidden_iframe' id='hidden_iframe' style={{ display: 'none' }} onLoad={() => handleSubmit()} />
+            <iframe
+                title='hidden_iframe'
+                name='hidden_iframe'
+                id='hidden_iframe'
+                style={{ display: 'none' }}
+                onLoad={() => handleSubmit()}
+            />
             <Form
                 action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSdsHMQ3BAhoEiqBPaty-DGXY-IH2Owms6xrXxq3YHfL3cDkSQ/formResponse'
                 method='POST'

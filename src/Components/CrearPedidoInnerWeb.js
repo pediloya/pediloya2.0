@@ -61,7 +61,7 @@ const CrearPedidoInnerWeb = () => {
         if (!teamMembers) return
         teamMembers.map(indiv => {
             if (!indiv.web.on) return
-            setTeamMemberEmails(teamMemberEmails => [...teamMemberEmails, indiv.email])
+            return setTeamMemberEmails(teamMemberEmails => [...teamMemberEmails, indiv.email])
         })
     }, [teamMembers])
 
@@ -74,7 +74,13 @@ const CrearPedidoInnerWeb = () => {
 
     return (
         <>
-            <iframe name='hidden_iframe' id='hidden_iframe' style={{ display: 'none' }} onLoad={() => handleSubmit()} />
+            <iframe
+                title='hidden_iframe'
+                name='hidden_iframe'
+                id='hidden_iframe'
+                style={{ display: 'none' }}
+                onLoad={() => handleSubmit()}
+            />
             <Form
                 action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSejJZ9OrpcZQK7TED4eYyCd3ZmKo4butT6PezUd4-0mlIUCeA/formResponse'
                 method='POST'

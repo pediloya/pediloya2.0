@@ -3,7 +3,7 @@ import { Card, Form, Button, Alert, ProgressBar } from 'react-bootstrap'
 import { useDescargas } from '../Context/DescargasContext'
 
 const DescargasCrear = () => {
-    const { uploadFile, progress, error: uploadError, url } = useDescargas()
+    const { uploadFile, progress, error: uploadError } = useDescargas()
 
     const [file, setFile] = useState(null)
     const [name, setName] = useState('')

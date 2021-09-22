@@ -17,7 +17,7 @@ const CrearPedidoType = () => {
         return () => {
             handlePedidoType(null)
         }
-    }, [])
+    }, [handlePedidoType, location.search])
 
     return (
         <Card>

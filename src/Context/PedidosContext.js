@@ -30,7 +30,7 @@ export const PedidosProvider = ({ children }) => {
             })
 
         return () => unsub()
-    }, [collection])
+    }, [collection, currentUser])
 
     const value = { pedidos: pedidos }
 

@@ -11,7 +11,7 @@ export const useUserData = () => {
 }
 
 export const UserDataProvider = ({ children }) => {
-    const { currentUser, userConfig, userType } = useAuth()
+    const { currentUser, userConfig /* , userType */ } = useAuth()
 
     const { docs: userDataDocs } = useFirestoreCollWhere('usuarios', 'userId', currentUser ? currentUser.uid : '')
 

@@ -50,7 +50,7 @@ const Login = () => {
     useEffect(() => {
         if (!currentUser) return
         history.push('/')
-    }, [])
+    }, [currentUser, history])
 
     const handleSubmit = async e => {
         e.preventDefault()

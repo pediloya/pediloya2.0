@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react'
 import { proyectAuth, googleProvider, linkWithRedirect, auth, signInWithRedirect, deleteUser } from '../firebase'
-import { useHistory } from 'react-router'
+/* import { useHistory } from 'react-router' */
 
 const AuthContext = createContext()
 
@@ -100,11 +100,11 @@ export const AuthProvider = ({ children }) => {
         let name = email.split('@')[0]
         let theConfig = `${type}Config`
 
-        console.log('email => ', email)
+        /* console.log('email => ', email)
         console.log('type => ', type)
         console.log('prevType => ', prevType)
         console.log('name => ', name)
-        console.log('theConfig => ', theConfig)
+        console.log('theConfig => ', theConfig) */
 
         if (prevType === 'gmail.com') {
             alert(
