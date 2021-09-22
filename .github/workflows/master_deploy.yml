@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node-version: [14.x]
+                node-version: [10.x]
         steps:
             - uses: actions/checkout@v1
             - name: Use Node.js ${{ matrix.node-version }}
@@ -33,5 +33,4 @@ jobs:
                   git config --global user.email pediloya.mingob@gmail.com
                   git config --global user.name pediloya
                   git remote set-url origin https://${{secrets.ACCESS_TOCKEN_GITHUB}}@github.com/pediloya/pediloya2.0.git
-            - name: deploy
                   npm run deploy
