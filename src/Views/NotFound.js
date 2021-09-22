@@ -7,7 +7,7 @@ const NotFound = () => {
             <div className='mainIntro'>
                 <h1>Página no encontrada</h1>
                 <h4>La página que buscás no existe o fue dada de baja.</h4>
-                <h5>Revisá si la dirección que escribiste es la correcta</h5>
+                <h5> Revisá si la dirección que escribiste es la correcta</h5>
             </div>
         </Container>
     )
