@@ -1,4 +1,4 @@
-name: envtest
+name: pediloya2.0
 on:
     push:
         branches:
@@ -32,5 +32,5 @@ jobs:
               run: |
                   git config --global user.email coalovaboris@gmail.com
                   git config --global user.name bcoalova
-                  git remote set-url origin https://${{secrets.ACCESS_TOCKEN_GITHUB}}@github.com/bcoalova/envtest.git
+                  git remote set-url origin https://${{secrets.ACCESS_TOCKEN_GITHUB}}@github.com/pediloya/pediloya2.0.git
                   npm run deploy
