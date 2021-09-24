@@ -337,6 +337,9 @@ footer p {
 .login {
     padding-top: var(--spacerX2);
 }
+.login.container-fluid {
+    padding-right: var(--spacer);
+}
 .login span {
     margin-right: var(--spacerD2);
 }

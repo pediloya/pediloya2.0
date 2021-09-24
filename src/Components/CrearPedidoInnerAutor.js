@@ -43,7 +43,7 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
         resetAutorEmail()
         resetEmailsToCopy()
         setEmailsToCopyArray([])
-    }, [secondSelect, resetAutorName, resetAutorEmail, resetEmailsToCopy, setEmailsToCopyArray])
+    }, [secondSelect])
 
     return (
         <>

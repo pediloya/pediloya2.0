@@ -8,7 +8,6 @@ const PedidoDetailsAutor = ({ pedido }) => {
     const day = createAt.toDate().toLocaleDateString('en-GB')
     const hour = createAt.toDate().getHours()
     const minutes = createAt.toDate().getMinutes()
-    console.log(pedido)
     return (
         <>
             <p>Creado el {`${day} a las ${hour}:${minutes} hs.`}</p>

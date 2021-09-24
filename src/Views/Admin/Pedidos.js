@@ -18,8 +18,7 @@ const Pedidos = () => {
     const { pedidos } = useAllPedidos()
     const [typeSelected, setTypeSelected] = useState(null)
     const [pedido, setPedido] = useState(null)
-    const location = useLocation()
-    console.log(location.pathname)
+
     const handleTypes = type => {
         if (type === typeSelected) return setTypeSelected(null)
         setTypeSelected(type)
@@ -29,12 +28,20 @@ const Pedidos = () => {
         setPedido(null)
     }, [typeSelected])
 
+    const location = useLocation()
+    useEffect(() => {
+        if (!location.search) return
+        /* console.log(location) */
+        const search = location.search.replace('?', '')
+        /* console.log(search) */
+        setTypeSelected(search)
+    }, [location])
+
     return (
         <Container fluid as='main'>
             <div className='mainIntro'>
                 <h1>Pedidos</h1>
                 <p>Llevá el seguimiento de los pedidos realizados al área de comunicación del Ministerio</p>
-                {console.log(pedidos)}
             </div>
             <Row>
                 <Col className='mb-3' lg={3}>

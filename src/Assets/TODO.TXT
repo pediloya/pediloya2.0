@@ -1,6 +1,7 @@
-31/08/2021
 
-=> CAMBIAR NOMBRE DE USUARIO EN PEDIDODETAILAUTOR.js POR EL NOMBRE DE USUARIO QUE VIENE DE AUTH (AHORA TE MUESTRA EL MISMO NOMBRE DEL USUARIO QUE ESTA VIENDO EL PEDIDO)
+
+
+
 
 Para reunión con Equipo: 
 
@@ -27,6 +28,17 @@ De ser necesario, quieren poder visualizarlos dentro de la plataforma o tener un
 • Cuantos pedidos en simultaneo suele haber de diseño? (Creados + En curso + Finalizados)
 
 • Consideran que esta bueno tener la posibilidad de variar el lapso de tiempo más cercano que las áreas pueden realizar un pedido, hoy en día es 10 días. Se podría sumar la funcionalidad para que alguien del equipo de comunicación cambie ese lapso de tiempo por ejemplo a 5 días / 10 días / 15 días. De esta manera por ejemplo en casos de que alguien del equipo este de vacaciones o este trabajando en algo muy grande pueda alargar ese lapso y de esta manera tener un mayor control sobre los tiempos. 
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 

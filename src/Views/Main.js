@@ -15,8 +15,6 @@ import User from '../Views/User/User'
 const Main = () => {
     const { loading, userType } = useAuth()
 
-    console.log(userType)
-
     return loading ? (
         'loading'
     ) : (

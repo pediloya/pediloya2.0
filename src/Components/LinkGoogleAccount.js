@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../Context/AuthContext'
-import { Button } from 'react-bootstrap'
+import { Button, Alert } from 'react-bootstrap'
 
 const LinkGoogleAccount = () => {
-    const { connectGoogleAccount } = useAuth()
+    const { connectGoogleAccount, googleLinkError, setGoogleLinkError } = useAuth()
+
+    useEffect(() => {
+        setGoogleLinkError('')
+    }, [])
 
     return (
-        <Button
-            onClick={() => {
-                connectGoogleAccount()
-            }}
-        >
-            Linkear cuenta con una cuenta de Gmail
-        </Button>
+        <>
+            {googleLinkError && <Alert variant='danger'>{googleLinkError}</Alert>}
+            <Button
+                onClick={() => {
+                    connectGoogleAccount()
+                }}
+            >
+                Linkear cuenta con una cuenta de Gmail
+            </Button>
+        </>
     )
 }
 

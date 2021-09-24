@@ -39,12 +39,14 @@ export const AuthProvider = ({ children }) => {
         return proyectAuth.signOut()
     }
 
+    const [googleLinkError, setGoogleLinkError] = useState('')
     function connectGoogleAccount() {
         linkWithRedirect(currentUser, googleProvider)
             .then(msg => {
                 console.log(msg)
             })
             .catch(err => {
+                setGoogleLinkError('Esta cuenta ya está asociada a una cuenta de google')
                 console.log(err)
             })
     }
@@ -135,6 +137,8 @@ export const AuthProvider = ({ children }) => {
         updatePasswordError,
         connectGoogleAccount,
         signupWithGoogle,
+        googleLinkError,
+        setGoogleLinkError,
     }
 
     return <Provider value={value}>{!loading && children}</Provider>

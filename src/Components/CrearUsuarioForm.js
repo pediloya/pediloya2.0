@@ -75,8 +75,7 @@ const CrearUsuarioForm = () => {
                     </Form.Label>
                     <Form.Control onChange={e => handleUserType(e)} as='select'>
                         <option value='@pediloya.reparticion'>Repartición</option>
-                        <option value='@pediloya.equipo'>Equipo de Comunicación</option>
-                        <option value='@pediloya.admin'>Admin</option>
+                        <option value='@pediloya.admin'>Equipo de Comunicación</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group className='formGroup'>

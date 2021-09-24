@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { usePedidos } from '../../Context/PedidosContext'
-/* import { useAuth } from '../../Context/AuthContext' */
 import { Container, Card, Row, Col, Table, DropdownButton, Dropdown, Button } from 'react-bootstrap'
 import { pedidosType } from '../../Assets/data'
 import PedidosListDisenio from '../../Components/PedidosListDisenio'
@@ -28,9 +27,9 @@ const Pedidos = () => {
     const location = useLocation()
     useEffect(() => {
         if (!location.search) return
-        console.log(location)
+        /* console.log(location) */
         const search = location.search.replace('?', '')
-        console.log(search)
+        /* console.log(search) */
         setTypeSelected(search)
     }, [location])
 
