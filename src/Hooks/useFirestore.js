@@ -7,6 +7,7 @@ export const useFirestoreColl = collection => {
     const { currentUser } = useAuth()
 
     useEffect(() => {
+        if (!currentUser) return
         const unsub = projectFirestore
             .collection(collection)
             .orderBy('createAt', 'desc')
@@ -30,6 +31,7 @@ export const useFirestoreDoc = (collection, document) => {
     const { currentUser } = useAuth()
 
     useEffect(() => {
+        if (!currentUser) return
         if (!document || !collection) return
         const unsub = projectFirestore
             .collection(collection)
@@ -49,6 +51,7 @@ export const useFirestoreCollWhere = (collection, whereKey, whereValue) => {
     const { currentUser } = useAuth()
 
     useEffect(() => {
+        if (!currentUser) return
         if (!collection || !whereKey || !whereValue) return
         const unsub = projectFirestore
             .collection(collection)
@@ -74,6 +77,7 @@ export const useFirestoreCollWhereNoOrder = (collection, whereKey, whereValue) =
     const { currentUser } = useAuth()
 
     useEffect(() => {
+        if (!currentUser) return
         if (!collection || !whereKey || !whereValue) return
         const unsub = projectFirestore
             .collection(collection)

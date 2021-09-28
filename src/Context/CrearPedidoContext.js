@@ -218,6 +218,7 @@ export const CrearPedidoProvider = ({ children }) => {
         if (webLink) {
             /* noticia o nuevo contenido con link */
             let data = {
+                area: userName,
                 pedido: 'web',
                 type: secondSelect.id,
                 linkToContent: webLink,
@@ -240,6 +241,7 @@ export const CrearPedidoProvider = ({ children }) => {
         }
         let data = {
             /* noticia o nuevo contenido con campos */
+            area: userName,
             pedido: 'web',
             type: secondSelect.id,
             title: webTitle,

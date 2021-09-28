@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Alert, Card, Form, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../Context/AuthContext'
+import GoogleIcon from '../Assets/img/GoogleIcons'
 
 const Login = () => {
     const { login, signupWithGoogle, currentUser } = useAuth()
@@ -154,17 +155,20 @@ const Login = () => {
                         </Form.Group>
                         <hr />
                         <p className='mb-1'>
-                            ¡Si conectaste tu cuenta con una cuenta de google, te podes loguear con ese método!
+                            ¡Si vinculaste tu cuenta con una cuenta de google, te podes loguear con ese método!
                         </p>
-                        <small className='mb-3 d-block'>Hacelo desde el panel de Usuario dentro de la plataforma</small>
+                        <small className='mb-3 d-block'>
+                            Para vincular tu cuenta, hacelo desde el panel de Usuario dentro de la plataforma.
+                        </small>
                         <Button
                             disabled={loading}
                             className='w-100'
                             type='button'
-                            variant='primary'
+                            variant='secondary'
                             onClick={() => signupWithGoogle()}
                         >
-                            Usar gmail
+                            <GoogleIcon />
+                            Usar Gmail
                         </Button>
                     </Form>
                 </Card.Body>

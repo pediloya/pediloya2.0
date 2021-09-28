@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../../Context/AuthContext'
 import { useAllPedidos } from '../../Context/AllPedidosContext'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { pedidosType } from '../../Assets/data'
-import { Container, Row, Col, Card, Table, DropdownButton, Dropdown, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Table, Button } from 'react-bootstrap'
 
 import PedidosListDisenio from '../../Components/PedidosListDisenio'
 import PedidosListWeb from '../../Components/PedidosListWeb'
@@ -13,16 +15,32 @@ import PedidoDetailsDisenio from '../../Components/PedidoDetailsDisenio'
 import PedidoDetailsWeb from '../../Components/PedidoDetailsWeb'
 import PedidoDetailsRedes from '../../Components/PedidoDetailsRedes'
 import PedidoDetailsSomos from '../../Components/PedidoDetailsSomos'
+import PedidosDetailsState from '../../Components/PedidosDetailsState'
+import AsignPedidos from '../../Components/AsignPedidos'
 
 const Pedidos = () => {
+    const { userType } = useAuth()
     const { pedidos } = useAllPedidos()
     const [typeSelected, setTypeSelected] = useState(null)
     const [pedido, setPedido] = useState(null)
+    const [filter, setFilter] = useState(false)
 
     const handleTypes = type => {
         if (type === typeSelected) return setTypeSelected(null)
         setTypeSelected(type)
     }
+
+    const selectPedido = pedido => {
+        setPedido(pedido)
+    }
+
+    useEffect(() => {
+        if (!pedido) return
+        pedidos.map(ped => {
+            if (pedido.state === 'closed') return setPedido(null)
+            if (pedido.id === ped.id) setPedido(ped)
+        })
+    }, [pedidos])
 
     useEffect(() => {
         setPedido(null)
@@ -31,9 +49,7 @@ const Pedidos = () => {
     const location = useLocation()
     useEffect(() => {
         if (!location.search) return
-        /* console.log(location) */
         const search = location.search.replace('?', '')
-        /* console.log(search) */
         setTypeSelected(search)
     }, [location])
 
@@ -80,15 +96,22 @@ const Pedidos = () => {
                                     : typeSelected === 'somos' && 'Noticia para Somos'}
                             </Card.Header>
                             <Card.Body>
-                                <Table bordered hover className='pedidosList' size='sm'>
+                                {userType === 'admin' && (
+                                    <Button className='mb-3' variant='primary' onClick={() => setFilter(filter => !filter)}>
+                                        {filter ? 'Ver todos los pedidos' : 'Ver pedidos asignos a mi'}
+                                    </Button>
+                                )}
+                                <Table responsive='sm' bordered hover className='pedidosList' size='sm'>
                                     {typeSelected === 'disenio' ? (
-                                        <PedidosListDisenio pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListDisenio pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
                                     ) : typeSelected === 'web' ? (
-                                        <PedidosListWeb pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListWeb pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
                                     ) : typeSelected === 'redes' ? (
-                                        <PedidosListRedes pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListRedes pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
                                     ) : (
-                                        typeSelected === 'somos' && <PedidosListSomos pedidos={pedidos} setPedido={setPedido} />
+                                        typeSelected === 'somos' && (
+                                            <PedidosListSomos pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
+                                        )
                                     )}
                                 </Table>
                             </Card.Body>
@@ -117,48 +140,11 @@ const Pedidos = () => {
                                 pedido.pedido === 'somos' && <PedidoDetailsSomos pedido={pedido} />
                             )}
                         </Table>
-                        <p className='mb-0'>Estado del pedido:</p>
-                        <p>
-                            <strong>
-                                {pedido.state === 'created'
-                                    ? 'Creado'
-                                    : pedido.state === 'inProgress'
-                                    ? 'En curso'
-                                    : pedido.state === 'finalized'
-                                    ? 'Finalizado'
-                                    : pedido.state === 'closed' && 'Cerrado'}
-                            </strong>
-                        </p>
-                        <p className='mb-0'>
-                            <small>
-                                Cuando el área realiza un pedido, el estado será "Creado", si ya empezaste a trabajar en el mismo
-                                cambialo a "En curso".
-                            </small>
-                        </p>
-                        <p className='mb-0'>
-                            <small>
-                                Una vez entregado, cambiale el estado a "Finalizado", si el área está conforme con el trabajo
-                                deberá cambiarle el estado a "Cerrado"
-                            </small>
-                        </p>
-                        <p className='mb-0'>
-                            <small>De esta forma evitamos que se acumulen muchos pedidos en esta página.</small>
-                        </p>
-                        <p>
-                            <small>
-                                *El pedido cambiará su estado a "Cerrado" autómaticamente luego de 7 días de haber sido
-                                "Finalizado".
-                            </small>
-                        </p>
-                        <div className='d-flex justify-content-between'>
-                            <DropdownButton variant='primary' drop='down' id='dropdown-basic-button' title='Cambiar estado'>
-                                <Dropdown.Item disabled={pedido.state !== 'created'}>En curso</Dropdown.Item>
-                                <Dropdown.Item disabled={pedido.state !== 'finalized'}>Finalizado</Dropdown.Item>
-                            </DropdownButton>
-                            <Button to={`/pedido/${pedido.id}`} as={Link}>
-                                Abrir en página
-                            </Button>
-                        </div>
+                        <PedidosDetailsState pedido={pedido} />
+                        <AsignPedidos pedido={pedido} />
+                        <Button as={Link} to={`/pedido/${pedido.id}`}>
+                            Ver en página completa
+                        </Button>
                     </Card.Body>
                 </Card>
             ) : null}

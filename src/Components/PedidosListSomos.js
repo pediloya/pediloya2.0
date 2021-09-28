@@ -1,35 +1,40 @@
 import React from 'react'
+import { useAuth } from '../Context/AuthContext'
+import PedidosListSomosTRow from './PedidosListSomosTRow'
 
-const PedidosListSomos = ({ pedidos, setPedido }) => {
+const PedidosListSomos = ({ pedidos, selectPedido, filter }) => {
+    const { userType, currentUser } = useAuth()
+
     return (
         <>
             <thead>
                 <tr>
                     <th>Realizado</th>
-                    <th>Autor</th>
+                    <th>Área</th>
                     <th>Sección</th>
                     <th>Observaciones</th>
-                    <th>Estado</th>
+                    {userType === 'admin' ? <th>Estado</th> : null}
                 </tr>
             </thead>
             <tbody>
                 {pedidos.map((pedido, i) => {
-                    if (pedido.pedido === 'somos')
+                    if (pedido.pedido !== 'somos') return
+                    if (pedido.state === 'closed') return
+                    if (filter) {
+                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                            return (
+                                <PedidosListSomosTRow
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
+                    } else {
                         return (
-                            <tr key={i} onClick={() => setPedido(pedido)}>
-                                <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-                                <td>{pedido.autor.autorName}</td>
-                                <td>
-                                    {pedido.type === 'NoTeLoPierdas'
-                                        ? 'No te lo pierdas'
-                                        : pedido.type === 'EntreNos'
-                                        ? 'Entre Nos'
-                                        : 'Te enteraste'}
-                                </td>
-                                <td className='truncate'>{pedido.observaciones}</td>
-                                <td>{pedido.state === 'created' ? 'Creado' : ''}</td>
-                            </tr>
+                            <PedidosListSomosTRow key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
                         )
+                    }
                 })}
             </tbody>
         </>

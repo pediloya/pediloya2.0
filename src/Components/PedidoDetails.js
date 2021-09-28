@@ -8,9 +8,11 @@ import PedidoDetailsDisenio from './PedidoDetailsDisenio'
 import PedidoDetailsWeb from './PedidoDetailsWeb'
 import PedidoDetailsSomos from './PedidoDetailsSomos'
 import PedidoDetailsRedes from './PedidoDetailsRedes'
+import PedidosDetailsState from './PedidosDetailsState'
+import AsignPedidos from './AsignPedidos'
 
 const PedidoDetails = ({ pedido }) => {
-    /* const { userType } = useAuth() */
+    const { userType } = useAuth()
 
     return (
         <>
@@ -41,21 +43,17 @@ const PedidoDetails = ({ pedido }) => {
                             pedido.pedido === 'redes' && <PedidoDetailsRedes pedido={pedido} />
                         )}
                     </Table>
-                    <p>
-                        Estado del pedido:{' '}
-                        {pedido.state === 'created'
-                            ? 'Creado'
-                            : pedido.state === 'inProgress'
-                            ? 'En curso'
-                            : pedido.state === 'finalized'
-                            ? 'Finalizado'
-                            : pedido.state === 'closed' && 'Cerrado'}
-                    </p>
+                    {userType === 'admin' && (
+                        <>
+                            <PedidosDetailsState pedido={pedido} />
+                            <AsignPedidos pedido={pedido} />
+                            <Button className='btn btn-primary btnMarginR' as={Link} to={`/pedido/${pedido.id}`}>
+                                Ver en página completa
+                            </Button>
+                        </>
+                    )}
                 </Card.Body>
             </Card>
-            <Button as={Link} to='/pedidos'>
-                Volver
-            </Button>
         </>
     )
 }

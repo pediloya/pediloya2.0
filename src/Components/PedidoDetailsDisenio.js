@@ -1,7 +1,10 @@
 import React from 'react'
+import { useAuth } from '../Context/AuthContext'
 import { isValidURL } from '../Assets/Regex'
 
 const PedidoDetailsDisenio = ({ pedido }) => {
+    const { userType } = useAuth()
+
     return (
         <>
             <thead>
@@ -56,6 +59,12 @@ const PedidoDetailsDisenio = ({ pedido }) => {
                     <td>Observaciones:</td>
                     <td>{pedido.observaciones.toString()}</td>
                 </tr>
+                {userType === 'admin' && pedido.asignedTo && (
+                    <tr>
+                        <td>Asignado a:</td>
+                        <td>{pedido.asignedTo.userName}</td>
+                    </tr>
+                )}
             </tbody>
         </>
     )

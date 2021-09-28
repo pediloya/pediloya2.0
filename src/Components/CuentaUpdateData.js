@@ -45,7 +45,10 @@ const CuentaUpdateData = () => {
         <>
             <Card className='w-100 mb-3'>
                 <Card.Header>
-                    <span className='material-icons'>manage_accounts</span> Información adicional
+                    <span className='material-icons'>manage_accounts</span>{' '}
+                    {userType === 'admin'
+                        ? 'Configurá tu usuario para recibir notificaciones por email'
+                        : 'Información adicional'}
                 </Card.Header>
                 <Card.Body>
                     {loading ? (

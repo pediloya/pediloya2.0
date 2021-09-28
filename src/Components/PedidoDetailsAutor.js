@@ -1,9 +1,7 @@
 import React from 'react'
-import { useAuth } from '../Context/AuthContext'
 import { Table } from 'react-bootstrap'
 
 const PedidoDetailsAutor = ({ pedido }) => {
-    const { userName } = useAuth()
     const { createAt } = pedido
     const day = createAt.toDate().toLocaleDateString('en-GB')
     const hour = createAt.toDate().getHours()
@@ -11,7 +9,7 @@ const PedidoDetailsAutor = ({ pedido }) => {
     return (
         <>
             <p>Creado el {`${day} a las ${hour}:${minutes} hs.`}</p>
-            <Table bordered hover className='w-auto'>
+            <Table bordered responsive='sm' hover className='w-auto'>
                 <thead>
                     <tr>
                         <th colSpan='2'>Autor</th>
@@ -21,7 +19,7 @@ const PedidoDetailsAutor = ({ pedido }) => {
                     <tr>
                         <td>Área: </td>
                         <td>
-                            <span className='toUppercase bold'>{userName}</span>
+                            <span className='toUppercase bold'>{pedido.area}</span>
                         </td>
                     </tr>
                     <tr>

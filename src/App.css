@@ -92,11 +92,21 @@ main .mainIntro h1 {
     margin-left: var(--spacerD2);
     font-size: var(--spacer);
 }
-span.toUppercase {
+span.toUppercase,
+td.toUppercase {
     text-transform: uppercase;
 }
 span.bold {
     font-weight: 700;
+}
+.dropdown,
+.btnMarginR {
+    display: inline-flex;
+    margin-right: var(--spacer);
+}
+
+.dropdown-toggle::after {
+    margin-left: 0.355em;
 }
 
 /* NAVBAR */
@@ -324,6 +334,11 @@ footer p {
 .show > .btn-primary.dropdown-toggle:focus {
     box-shadow: none;
 }
+.btn-secondary {
+    color: var(--black);
+    background-color: var(--white);
+}
+
 /* TABLE RESET */
 
 .table {
@@ -730,4 +745,34 @@ footer p {
 .home .homeQuote {
     text-align: center;
     margin-bottom: var(--spacerX2);
+}
+
+.linkButtonWrapper button svg,
+.login button svg {
+    width: 20px;
+    margin-right: var(--spacerD2);
+}
+.linkButtonWrapper button,
+.login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.created,
+.inProgress,
+.finalized,
+.closed {
+    font-weight: bold;
+}
+.created {
+    color: hsl(165, 61%, 46%);
+}
+.inProgress {
+    color: hsl(36, 89%, 56%);
+}
+.finalized {
+    color: hsl(4, 75%, 65%);
+}
+.closed {
+    color: hsl(208, 21%, 31%);
 }

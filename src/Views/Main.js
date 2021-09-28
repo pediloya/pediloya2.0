@@ -2,8 +2,7 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { useAuth } from '../Context/AuthContext'
-import { PedidosProvider } from '../Context/PedidosContext'
-import { AllPedidosProvider } from '../Context/AllPedidosContext'
+import AllMainProvider from '../Context/AllMainProvider'
 
 import Login from './Login'
 import NotFound from './NotFound'
@@ -21,14 +20,12 @@ const Main = () => {
         <Switch>
             <Route exact path='/login' component={Login} />
             {userType ? (
-                <PedidosProvider>
-                    <AllPedidosProvider>
-                        <CustomSwitch test={userType}>
-                            <Admin switchValue='admin' />
-                            <User switchValue='reparticion' />
-                        </CustomSwitch>
-                    </AllPedidosProvider>
-                </PedidosProvider>
+                <AllMainProvider>
+                    <CustomSwitch test={userType}>
+                        <Admin switchValue='admin' />
+                        <User switchValue='reparticion' />
+                    </CustomSwitch>
+                </AllMainProvider>
             ) : (
                 <Redirect to='/login' />
             )}

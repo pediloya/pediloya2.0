@@ -1,33 +1,38 @@
 import React from 'react'
+import { useAuth } from '../Context/AuthContext'
+import PedidoListRedesTRow from './PedidosListDisenioTRow'
 
-const PedidosListRedes = ({ pedidos, setPedido }) => {
+const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
+    const { userType, currentUser } = useAuth()
     return (
         <>
             <thead>
                 <tr>
                     <th>Realizado</th>
-                    <th>Autor</th>
+                    <th>Área</th>
                     <th>Tipo de pedido</th>
                     <th>Fecha de publicación</th>
                     <th>Observaciones</th>
-                    <th>Estado</th>
+                    {userType === 'admin' ? <th>Estado</th> : null}
                 </tr>
             </thead>
             <tbody>
                 {pedidos.map((pedido, i) => {
-                    if (pedido.pedido === 'redes')
-                        return (
-                            <tr key={i} onClick={() => setPedido(pedido)}>
-                                <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-                                <td>{pedido.autor.autorName}</td>
-                                <td>
-                                    {pedido.type === 'facebook' ? 'Facebook' : pedido.type === 'twitter' ? 'Twitter' : 'Ambas'}
-                                </td>
-                                <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
-                                <td className='truncate'>{pedido.observaciones}</td>
-                                <td>{pedido.state === 'created' ? 'Creado' : ''}</td>
-                            </tr>
-                        )
+                    if (pedido.pedido !== 'redes') return
+                    if (pedido.state === 'closed') return
+                    if (filter) {
+                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                            return (
+                                <PedidoListRedesTRow
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
+                    } else {
+                        return <PedidoListRedesTRow key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
+                    }
                 })}
             </tbody>
         </>

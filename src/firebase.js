@@ -1,12 +1,5 @@
 import firebase from 'firebase/compat/app'
-import {
-    getAuth,
-    linkWithRedirect,
-    GoogleAuthProvider,
-    signInWithRedirect,
-    deleteUser,
-    sendEmailVerification,
-} from 'firebase/auth'
+import { getAuth, linkWithRedirect, GoogleAuthProvider, signInWithRedirect, deleteUser, unlink } from 'firebase/auth'
 import 'firebase/compat/auth'
 import 'firebase/compat/storage'
 import 'firebase/compat/firestore'
@@ -46,5 +39,5 @@ export {
     googleProvider,
     signInWithRedirect,
     deleteUser,
-    sendEmailVerification,
+    unlink,
 }

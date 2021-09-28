@@ -1,38 +1,41 @@
 import React from 'react'
+import { useAuth } from '../Context/AuthContext'
+import PedidosListDisenioTRow from './PedidosListDisenioTRow'
 
-const PedidosListDisenio = ({ pedidos, setPedido }) => {
+const PedidosListDisenio = ({ pedidos, selectPedido, filter }) => {
+    const { userType, currentUser } = useAuth()
+
     return (
         <>
             <thead>
                 <tr>
                     <th>Realizado</th>
-                    <th>Autor</th>
-                    <th>Tipo de pedido</th>
+                    <th>Área</th>
                     <th>Fecha de entrega</th>
-                    <th>Observaciones</th>
-                    <th>Estado</th>
+                    <th>Tipo de pedido</th>
+                    <th>Especificaciones</th>
+                    {userType === 'admin' ? <th>Estado</th> : null}
                 </tr>
             </thead>
             <tbody>
-                {pedidos.map((pedido, i) => {
-                    if (!pedido.pedido === 'disenio') return
-                    if (pedido.pedido === 'disenio')
+                {pedidos.map(pedido => {
+                    if (pedido.pedido !== 'disenio') return
+                    if (pedido.state === 'closed') return
+                    if (filter) {
+                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                            return (
+                                <PedidosListDisenioTRow
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
+                    } else {
                         return (
-                            <tr key={i} onClick={() => setPedido(pedido)}>
-                                <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-                                <td>{pedido.autor.autorName}</td>
-                                <td>
-                                    {pedido.type === 'digital'
-                                        ? 'Pieza Digital'
-                                        : pedido.type === 'impresa'
-                                        ? 'Pieza Impresa'
-                                        : 'Ambas'}
-                                </td>
-                                <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
-                                <td className='truncate'>{pedido.observaciones}</td>
-                                <td>{pedido.state === 'created' ? 'Creado' : ''}</td>
-                            </tr>
+                            <PedidosListDisenioTRow key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
                         )
+                    }
                 })}
             </tbody>
         </>

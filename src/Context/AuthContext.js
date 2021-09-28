@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react'
-import { proyectAuth, googleProvider, linkWithRedirect, auth, signInWithRedirect, deleteUser } from '../firebase'
+import { proyectAuth, googleProvider, linkWithRedirect, auth, signInWithRedirect, deleteUser, unlink } from '../firebase'
 /* import { useHistory } from 'react-router' */
 
 const AuthContext = createContext()
@@ -55,6 +55,24 @@ export const AuthProvider = ({ children }) => {
         signInWithRedirect(auth, googleProvider)
     }
 
+    const [unlinkSuccess, setUnlinkSucces] = useState(false)
+    function unLinkFromGoogle() {
+        console.log(currentUser)
+        let googleProviderId = currentUser.providerData.find(id => id.providerId === 'google.com')
+        console.log(googleProviderId.providerId)
+        unlink(currentUser, googleProviderId.providerId)
+            .then(msg => {
+                setUnlinkSucces(true)
+                console.log(msg)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .then(() => {
+                setUnlinkSucces(false)
+            })
+    }
+
     function deleteUserFution() {
         deleteUser(currentUser)
             .then(() => {
@@ -94,26 +112,17 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (!currentUser) return
-
         let email = currentUser.email
         let prevType = email.split('@')[1]
         let type = email.split('@')[1].split('.')[1]
-
         let name = email.split('@')[0]
         let theConfig = `${type}Config`
-
-        /* console.log('email => ', email)
-        console.log('type => ', type)
-        console.log('prevType => ', prevType)
-        console.log('name => ', name)
-        console.log('theConfig => ', theConfig) */
 
         if (prevType === 'gmail.com') {
             alert(
                 'Solo es posible ingresar con Gmail si asociaste tu cuenta a una cuenta de Gmail, para esto ingresá primero con usuario y contraseña y asociá tu cuenta en el panel de Usuario'
             )
             deleteUserFution()
-
             return logout()
         }
 
@@ -139,6 +148,8 @@ export const AuthProvider = ({ children }) => {
         signupWithGoogle,
         googleLinkError,
         setGoogleLinkError,
+        unLinkFromGoogle,
+        unlinkSuccess,
     }
 
     return <Provider value={value}>{!loading && children}</Provider>

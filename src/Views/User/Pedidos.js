@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { usePedidos } from '../../Context/PedidosContext'
-import { Container, Card, Row, Col, Table, DropdownButton, Dropdown, Button } from 'react-bootstrap'
+import { Container, Card, Row, Col, Table } from 'react-bootstrap'
 import { pedidosType } from '../../Assets/data'
 import PedidosListDisenio from '../../Components/PedidosListDisenio'
 import PedidosListWeb from '../../Components/PedidosListWeb'
@@ -12,17 +12,34 @@ import PedidoDetailsDisenio from '../../Components/PedidoDetailsDisenio'
 import PedidoDetailsWeb from '../../Components/PedidoDetailsWeb'
 import PedidoDetailsRedes from '../../Components/PedidoDetailsRedes'
 import PedidoDetailsSomos from '../../Components/PedidoDetailsSomos'
+import PedidosDetailsState from '../../Components/PedidosDetailsState'
 
 const Pedidos = () => {
     const { pedidos } = usePedidos()
-    /* const { userType } = useAuth() */
 
     const [typeSelected, setTypeSelected] = useState(null)
     const [pedido, setPedido] = useState(null)
+
     const handleTypes = type => {
         if (type === typeSelected) return setTypeSelected(null)
         setTypeSelected(type)
     }
+
+    const selectPedido = pedido => {
+        setPedido(pedido)
+    }
+
+    useEffect(() => {
+        if (!pedido) return
+        pedidos.map(ped => {
+            if (pedido.state === 'closed') return setPedido(null)
+            if (pedido.id === ped.id) setPedido(ped)
+        })
+    }, [pedidos])
+
+    useEffect(() => {
+        setPedido(null)
+    }, [typeSelected])
 
     const location = useLocation()
     useEffect(() => {
@@ -80,15 +97,17 @@ const Pedidos = () => {
                                     : typeSelected === 'somos' && 'Noticia para Somos'}
                             </Card.Header>
                             <Card.Body>
-                                <Table bordered hover className='pedidosList' size='sm'>
+                                <Table responsive='sm' bordered hover className='pedidosList' size='sm'>
                                     {typeSelected === 'disenio' ? (
-                                        <PedidosListDisenio pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListDisenio pedidos={pedidos} selectPedido={selectPedido} />
                                     ) : typeSelected === 'web' ? (
-                                        <PedidosListWeb pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListWeb pedidos={pedidos} selectPedido={selectPedido} />
                                     ) : typeSelected === 'redes' ? (
-                                        <PedidosListRedes pedidos={pedidos} setPedido={setPedido} />
+                                        <PedidosListRedes pedidos={pedidos} selectPedido={selectPedido} />
                                     ) : (
-                                        typeSelected === 'somos' && <PedidosListSomos pedidos={pedidos} setPedido={setPedido} />
+                                        typeSelected === 'somos' && (
+                                            <PedidosListSomos pedidos={pedidos} selectPedido={selectPedido} />
+                                        )
                                     )}
                                 </Table>
                             </Card.Body>
@@ -117,47 +136,12 @@ const Pedidos = () => {
                                 pedido.pedido === 'somos' && <PedidoDetailsSomos pedido={pedido} />
                             )}
                         </Table>
-                        <p className='mb-0'>Estado del pedido:</p>
-                        <p>
-                            <strong>
-                                {pedido.state === 'created'
-                                    ? 'Creado'
-                                    : pedido.state === 'inProgress'
-                                    ? 'En curso'
-                                    : pedido.state === 'finalized'
-                                    ? 'Finalizado'
-                                    : pedido.state === 'closed' && 'Cerrado'}
-                            </strong>
-                        </p>
-                        <p className='mb-0'>
-                            <small>
-                                El equipo de comunicación podrá cambiar el estado de "Creado" a "En curso" y una vez finalizado lo
-                                cambiará a "Finalizado".
-                            </small>
-                        </p>
-                        <p className='mb-0'>
-                            <small>
-                                Si considerás que el trabajo está listo podrás cambiarle el estado a "Cerrado", esto hará que se
-                                deje de visualizar en esta página.
-                            </small>
-                        </p>
-                        <p className='mb-0'>
-                            <small>De esta forma evitamos que se acumulen muchos pedidos.</small>
-                        </p>
-                        <p>
-                            <small>
-                                *El pedido cambiará su estado a "Cerrado" autómaticamente luego de 7 días de haber sido
-                                "Finalizado".
-                            </small>
-                        </p>
-                        <div className='d-flex justify-content-between'>
-                            <DropdownButton variant='primary' drop='down' id='dropdown-basic-button' title='Cambiar estado'>
-                                <Dropdown.Item disabled={pedido.state !== 'finalized'}>Cerrado</Dropdown.Item>
-                            </DropdownButton>
-                            <Button to={`/pedido/${pedido.id}`} as={Link}>
-                                Abrir en página
-                            </Button>
-                        </div>
+                        {/* <PedidosDetailsState pedido={pedido} /> 
+                        <AsignPedidos pedido={pedido} />
+                        <Button as={Link} to={`/pedido/${pedido.id}`}>
+                            Ver en página completa
+                        </Button>
+                        */}
                     </Card.Body>
                 </Card>
             ) : null}
