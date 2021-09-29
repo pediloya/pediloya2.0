@@ -56,8 +56,19 @@ const Pedidos = () => {
     }, [typeSelected])
 
     const expandedPedidosTypeSelect = () => {
+        if (pedidosExpanded) {
+            localStorage.setItem('pedidosExpanded', false)
+        } else {
+            localStorage.setItem('pedidosExpanded', true)
+        }
         setPedidosExpanded(pedidosExpanded => !pedidosExpanded)
     }
+
+    useEffect(() => {
+        if (!localStorage.getItem('pedidosExpanded')) return
+        if (localStorage.getItem('pedidosExpanded') === 'true') return setPedidosExpanded(true)
+        setPedidosExpanded(false)
+    }, [])
 
     return (
         <Container fluid as='main'>

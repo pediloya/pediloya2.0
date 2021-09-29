@@ -64,6 +64,7 @@ const Pedidos = () => {
     }
 
     useEffect(() => {
+        if (!localStorage.getItem('pedidosExpanded')) return
         if (localStorage.getItem('pedidosExpanded') === 'true') return setPedidosExpanded(true)
         setPedidosExpanded(false)
     }, [])
