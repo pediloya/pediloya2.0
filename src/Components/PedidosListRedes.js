@@ -1,19 +1,19 @@
 import React from 'react'
 import { useAuth } from '../Context/AuthContext'
-import PedidoListRedesTRow from './PedidosListDisenioTRow'
+import PedidoListRedesTRow from './PedidoListRedesTRow'
 
 const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
     const { userType, currentUser } = useAuth()
     return (
         <>
             <thead>
-                <tr>
+                <tr className='text-nowrap'>
                     <th>Realizado</th>
-                    <th>Área</th>
+                    {userType === 'admin' ? <th>Área</th> : <th>Autor</th>}
                     <th>Tipo de pedido</th>
                     <th>Fecha de publicación</th>
-                    <th>Observaciones</th>
-                    {userType === 'admin' ? <th>Estado</th> : null}
+                    {userType === 'admin' ? <th>Asignado a</th> : <th>Observaciones</th>}
+                    {userType === 'admin' && <th>Estado</th>}
                 </tr>
             </thead>
             <tbody>

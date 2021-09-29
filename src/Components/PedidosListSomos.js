@@ -8,11 +8,11 @@ const PedidosListSomos = ({ pedidos, selectPedido, filter }) => {
     return (
         <>
             <thead>
-                <tr>
+                <tr className='text-nowrap'>
                     <th>Realizado</th>
-                    <th>Área</th>
+                    {userType === 'admin' ? <th>Área</th> : <th>Autor</th>}
                     <th>Sección</th>
-                    <th>Observaciones</th>
+                    {userType === 'admin' ? <th>Asignado a</th> : <th>Observaciones</th>}
                     {userType === 'admin' ? <th>Estado</th> : null}
                 </tr>
             </thead>

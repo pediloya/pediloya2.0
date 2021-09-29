@@ -3,15 +3,17 @@ import { useAuth } from '../Context/AuthContext'
 
 const PedidosListDisenioTRow = ({ pedido, selectPedido, filter }) => {
     const { userType, currentUser } = useAuth()
-
     return (
         <tr onClick={() => selectPedido(pedido)}>
             <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-            <td className='toUppercase'>{pedido.area}</td>
+            {userType === 'admin' ? <td className='toUppercase'>{pedido.area}</td> : <td>{pedido.autor.autorName}</td>}
             <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
-            <td>{pedido.type === 'digital' ? 'Pieza Digital' : pedido.type === 'impresa' ? 'Pieza Impresa' : 'Ambas'}</td>
-            <td className='truncate '>{pedido.specs}</td>
-            {userType === 'admin' ? (
+            <td className='text-nowrap'>
+                {pedido.type === 'digital' ? 'Pieza Digital' : pedido.type === 'impresa' ? 'Pieza Impresa' : 'Ambas'}
+            </td>
+            <td>{pedido.specs}</td>
+            {userType === 'admin' ? <td>{pedido.asignedTo?.userName}</td> : <td>{pedido.observaciones}</td>}
+            {userType === 'admin' && (
                 <td
                     className={
                         pedido.state === 'created'
@@ -31,7 +33,7 @@ const PedidosListDisenioTRow = ({ pedido, selectPedido, filter }) => {
                         ? 'Finalizado'
                         : pedido.state === 'closed' && 'Cerrado'}
                 </td>
-            ) : null}
+            )}
         </tr>
     )
 }

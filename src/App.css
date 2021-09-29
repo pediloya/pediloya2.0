@@ -692,7 +692,7 @@ footer p {
     overflow: hidden;
 }
 .pedidosList .truncate {
-    max-width: 750px;
+    max-width: 600px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -775,4 +775,28 @@ footer p {
 }
 .closed {
     color: hsl(208, 21%, 31%);
+}
+
+.pedidos.notExpanded {
+    overflow: hidden;
+}
+.notExpanded .cardTitleExpandable {
+    overflow: hidden;
+}
+.notExpanded .allTypes-info {
+    display: none;
+}
+.notExpanded .allType {
+    justify-content: center;
+}
+.materialBtn {
+    background-color: transparent;
+    border: none;
+}
+.materialBtn {
+    transition: transform 300ms ease-in-out;
+    transform: rotate(180deg);
+}
+.notExpanded .materialBtn {
+    transform: rotate(0);
 }

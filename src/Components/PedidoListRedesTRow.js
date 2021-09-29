@@ -6,11 +6,11 @@ const PedidoListRedesTRow = ({ pedido, selectPedido }) => {
     return (
         <tr onClick={() => selectPedido(pedido)}>
             <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-            <td className='toUppercase'>{pedido.area}</td>
+            {userType === 'admin' ? <td className='toUppercase'>{pedido.area}</td> : <td>{pedido.autor.autorName}</td>}
             <td>{pedido.type === 'facebook' ? 'Facebook' : pedido.type === 'twitter' ? 'Twitter' : 'Ambas'}</td>
             <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
-            <td className='truncate'>{pedido.observaciones}</td>
-            {userType === 'admin' ? (
+            {userType === 'admin' ? <td>{pedido.asignedTo?.userName}</td> : <td>{pedido.observaciones}</td>}
+            {userType === 'admin' && (
                 <td
                     className={
                         pedido.state === 'created'
@@ -30,7 +30,7 @@ const PedidoListRedesTRow = ({ pedido, selectPedido }) => {
                         ? 'Finalizado'
                         : pedido.state === 'closed' && 'Cerrado'}
                 </td>
-            ) : null}
+            )}
         </tr>
     )
 }

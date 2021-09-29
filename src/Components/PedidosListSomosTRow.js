@@ -6,11 +6,11 @@ const PedidosListSomosTRow = ({ pedido, selectPedido }) => {
     return (
         <tr onClick={() => selectPedido(pedido)}>
             <td>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</td>
-            <td className='toUppercase'>{pedido.area}</td>
-            <td>
+            {userType === 'admin' ? <td className='toUppercase'>{pedido.area}</td> : <td>{pedido.autor.autorName}</td>}
+            <td className='text-nowrap'>
                 {pedido.type === 'NoTeLoPierdas' ? 'No te lo pierdas' : pedido.type === 'EntreNos' ? 'Entre Nos' : 'Te enteraste'}
             </td>
-            <td className='truncate'>{pedido.observaciones}</td>
+            {userType === 'admin' ? <td>{pedido.asignedTo?.userName}</td> : <td>{pedido.observaciones}</td>}
             {userType === 'admin' ? (
                 <td
                     className={

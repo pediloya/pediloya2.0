@@ -19,6 +19,7 @@ const Pedidos = () => {
 
     const [typeSelected, setTypeSelected] = useState(null)
     const [pedido, setPedido] = useState(null)
+    const [pedidosExpanded, setPedidosExpanded] = useState(true)
 
     const handleTypes = type => {
         if (type === typeSelected) return setTypeSelected(null)
@@ -54,6 +55,10 @@ const Pedidos = () => {
         setPedido(null)
     }, [typeSelected])
 
+    const expandedPedidosTypeSelect = () => {
+        setPedidosExpanded(pedidosExpanded => !pedidosExpanded)
+    }
+
     return (
         <Container fluid as='main'>
             <div className='mainIntro'>
@@ -61,9 +66,22 @@ const Pedidos = () => {
                 <p>Todos los pedidos de tu área en un mismo lugar</p>
             </div>
             <Row>
-                <Col className='mb-3' lg={3}>
-                    <Card className='pedidos'>
-                        <Card.Header>Hacé clic para ver el listado de pedidos</Card.Header>
+                <Col className='mb-3' lg={pedidosExpanded ? 3 : 1}>
+                    <Card className={`pedidos ${pedidosExpanded ? 'expanded' : 'notExpanded'}`}>
+                        <Card.Header>
+                            <div className='d-flex justify-content-between w-100'>
+                                <span className='cardTitleExpandable text-nowrap'>Hacé clic para ver el listado de pedidos</span>
+                                <button
+                                    onClick={() => {
+                                        expandedPedidosTypeSelect()
+                                    }}
+                                    className='material-icons materialBtn'
+                                    title='Contraer tarjeta'
+                                >
+                                    chevron_right
+                                </button>
+                            </div>
+                        </Card.Header>
                         <Card.Body>
                             <div className='allTypes'>
                                 {pedidosType.map((type, i) => {
@@ -84,7 +102,7 @@ const Pedidos = () => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col className='mb-3'>
+                <Col lg={pedidosExpanded ? 9 : 11} className='mb-3'>
                     {typeSelected && (
                         <Card>
                             <Card.Header>
@@ -97,7 +115,7 @@ const Pedidos = () => {
                                     : typeSelected === 'somos' && 'Noticia para Somos'}
                             </Card.Header>
                             <Card.Body>
-                                <Table responsive='sm' bordered hover className='pedidosList' size='sm'>
+                                <Table responsive='sm' bordered hover className='pedidosList'>
                                     {typeSelected === 'disenio' ? (
                                         <PedidosListDisenio pedidos={pedidos} selectPedido={selectPedido} />
                                     ) : typeSelected === 'web' ? (
