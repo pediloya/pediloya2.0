@@ -1,5 +1,6 @@
-
-
+Página de pedidos cerrados
+Cerrar pedidos autómaticamente a los 7 días de estar finalizados
+responsive crear pedido detalles
 
 
 

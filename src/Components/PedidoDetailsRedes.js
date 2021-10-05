@@ -22,7 +22,7 @@ const PedidoDetailsRedes = ({ pedido }) => {
                 </tr>
                 <tr>
                     <td>Fecha de publicación: </td>
-                    <td>{pedido.formatedDate}</td>
+                    <td className='bold'>{pedido.formatedDate}</td>
                 </tr>
                 <tr>
                     <td>Texto para la publicación</td>

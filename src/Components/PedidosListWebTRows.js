@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuth } from '../Context/AuthContext'
+import { isValidURL } from '../Assets/Regex'
 
 const PedidosListWebTRows = ({ pedido, selectPedido }) => {
     const { userType } = useAuth()
@@ -11,7 +12,22 @@ const PedidosListWebTRows = ({ pedido, selectPedido }) => {
             <td>
                 {pedido.type === 'noticia' ? 'Noticia Web' : pedido.type === 'crear' ? 'Crear contenido' : 'Modificar contenido'}
             </td>
-            <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
+            <td className='bold'>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
+            {userType === 'reparticion' ? (
+                pedido.changes ? (
+                    <td>
+                        {isValidURL(pedido.changes) ? (
+                            <a href={pedido.changes} target='_blank' title='enlace'>
+                                Enlace
+                            </a>
+                        ) : (
+                            pedido.changes
+                        )}
+                    </td>
+                ) : (
+                    <td>{pedido.title ? pedido.title : pedido.linkToContent}</td>
+                )
+            ) : null}
             {userType === 'admin' ? <td>{pedido.asignedTo?.userName}</td> : <td>{pedido.observaciones}</td>}
             {userType === 'admin' && (
                 <td

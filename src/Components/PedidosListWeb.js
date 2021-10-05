@@ -13,6 +13,7 @@ const PedidosListWeb = ({ pedidos, selectPedido, filter }) => {
                     {userType === 'admin' ? <th>Área</th> : <th>Autor</th>}
                     <th>Tipo de pedido</th>
                     <th>Fecha de publicación</th>
+                    {userType === 'reparticion' && <th>Titulo, link o modificación</th>}
                     {userType === 'admin' ? <th>Asignado a</th> : <th>Observaciones</th>}
 
                     {userType === 'admin' && <th>Estado</th>}

@@ -12,6 +12,7 @@ const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
                     {userType === 'admin' ? <th>Área</th> : <th>Autor</th>}
                     <th>Tipo de pedido</th>
                     <th>Fecha de publicación</th>
+                    {userType === 'reparticion' && <th>Texto</th>}
                     {userType === 'admin' ? <th>Asignado a</th> : <th>Observaciones</th>}
                     {userType === 'admin' && <th>Estado</th>}
                 </tr>

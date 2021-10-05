@@ -8,6 +8,7 @@ const links = {
     'admin': [
         { id: 'home', title: 'Inicio', icon: 'home', type: 'link', path: '/' },
         { id: 'pedidos', title: 'Ver pedidos', icon: 'pageview', type: 'link', path: '/pedidos' },
+        { id: 'pedidosCerrados', title: 'Pedidos cerrados', icon: 'do_disturb', type: 'link', path: '/pedidos-cerrados' },
         { id: 'crearUsuario', title: 'Crear usuario', icon: 'person_add', type: 'link', path: '/crear-usuario' },
         { id: 'editarEquipo', title: 'Editar equipo', icon: 'groups', type: 'link', path: '/editar-equipo' },
         { id: 'editarDescargas', title: 'Editar Descargables', icon: 'file_upload', type: 'link', path: '/editar-descargables' },

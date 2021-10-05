@@ -9,6 +9,7 @@ import EditarDescargas from './EditarDescargas'
 import CrearUsuario from './CrearUsuario'
 import Pedido from './Pedido'
 import NotFound from '../NotFound'
+import PedidosCerrados from './PedidosCerrados'
 
 const Admin = () => {
     return (
@@ -20,7 +21,7 @@ const Admin = () => {
             <AuthRoute exact path='/editar-equipo' comp={EditarEquipo} />
             <AuthRoute exact path='/editar-descargables' comp={EditarDescargas} />
             <AuthRoute exact path='/pedido/:id' comp={Pedido} />
-
+            <AuthRoute exact path='/pedidos-cerrados' comp={PedidosCerrados} />
             <AuthRoute component={NotFound} />
         </Switch>
     )

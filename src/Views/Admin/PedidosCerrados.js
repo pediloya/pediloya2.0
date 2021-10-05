@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, Link } from 'react-router-dom'
 import { usePedidos } from '../../Context/PedidosContext'
 import { Container, Card, Row, Col, Table, Button } from 'react-bootstrap'
 import { pedidosType } from '../../Assets/data'
@@ -13,8 +12,7 @@ import PedidoDetailsWeb from '../../Components/PedidoDetailsWeb'
 import PedidoDetailsRedes from '../../Components/PedidoDetailsRedes'
 import PedidoDetailsSomos from '../../Components/PedidoDetailsSomos'
 import PedidosDetailsState from '../../Components/PedidosDetailsState'
-
-const Pedidos = () => {
+const PedidosCerrados = () => {
     const { pedidos } = usePedidos()
 
     const [typeSelected, setTypeSelected] = useState(null)
@@ -33,21 +31,10 @@ const Pedidos = () => {
     useEffect(() => {
         if (!pedido) return
         pedidos.map(ped => {
-            if (pedido.state === 'closed') return setPedido(null)
+            if (pedido.state !== 'closed') return setPedido(null)
             if (pedido.id === ped.id) setPedido(ped)
         })
     }, [pedidos])
-
-    useEffect(() => {
-        setPedido(null)
-    }, [typeSelected])
-
-    const location = useLocation()
-    useEffect(() => {
-        if (!location.search) return
-        const search = location.search.replace('?', '')
-        setTypeSelected(search)
-    }, [location])
 
     useEffect(() => {
         setPedido(null)
@@ -67,12 +54,11 @@ const Pedidos = () => {
         if (localStorage.getItem('pedidosExpanded') === 'true') return setPedidosExpanded(true)
         setPedidosExpanded(false)
     }, [])
-
     return (
         <Container fluid as='main'>
             <div className='mainIntro'>
-                <h1>Pedidos</h1>
-                <p>Todos los pedidos de tu área en un mismo lugar</p>
+                <h1>Pedidos cerrados</h1>
+                <p>Encontrá los pedidos que fueron cerrados</p>
             </div>
             <Row>
                 <Col className='mb-3' lg={pedidosExpanded ? 3 : 1}>
@@ -164,7 +150,6 @@ const Pedidos = () => {
                             )}
                         </Table>
                         <PedidosDetailsState pedido={pedido} />
-                        {/* <AsignPedidos pedido={pedido} /> */}
                         <Button as={Link} to={`/pedido/${pedido.id}`}>
                             Ver en página completa
                         </Button>
@@ -175,4 +160,4 @@ const Pedidos = () => {
     )
 }
 
-export default Pedidos
+export default PedidosCerrados

@@ -9,6 +9,7 @@ const PedidoListRedesTRow = ({ pedido, selectPedido }) => {
             {userType === 'admin' ? <td className='toUppercase'>{pedido.area}</td> : <td>{pedido.autor.autorName}</td>}
             <td>{pedido.type === 'facebook' ? 'Facebook' : pedido.type === 'twitter' ? 'Twitter' : 'Ambas'}</td>
             <td>{pedido.date.toDate().toLocaleDateString('en-GB')}</td>
+            {userType === 'reparticion' && <td>{pedido.text}</td>}
             {userType === 'admin' ? <td>{pedido.asignedTo?.userName}</td> : <td>{pedido.observaciones}</td>}
             {userType === 'admin' && (
                 <td

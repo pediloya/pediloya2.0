@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useAuth } from '../Context/AuthContext'
 import { usePedidosState } from '../Context/PedidosStateContext'
-import { Button, DropdownButton, Dropdown } from 'react-bootstrap'
+import { DropdownButton, Dropdown } from 'react-bootstrap'
+import PedidosDetailsStateInfo from '../Components/PedidosDetailsStateInfo'
 
 const PedidosDetailsState = ({ pedido }) => {
-    const { changeState } = usePedidosState()
+    const { userType } = useAuth()
 
-    const [show, setShow] = useState(false)
+    const { changeState, autoCloseState } = usePedidosState()
 
-    const showAction = () => {
-        setShow(show => !show)
-    }
+    useEffect(() => {
+        let created = pedido.createAt.seconds * 1000
+        let now = new Date().getTime()
+        let diff = now - created
+        let days = Math.floor(diff / (24 * 60 * 60 * 1000))
+        if (days < 8) return
+        if (pedido.state === 'finalized') autoCloseState(pedido)
+    }, [])
 
     return (
         <>
@@ -35,37 +42,11 @@ const PedidosDetailsState = ({ pedido }) => {
                         : pedido.state === 'closed' && 'Cerrado'}
                 </span>
             </p>
-            <div className='stateChange'>
-                <Button onClick={() => showAction()} variant='secondary' className='mb-3'>
-                    Más información sobre los estados
-                </Button>
-                <div style={{ display: show ? 'block' : 'none' }} className='stateChangeInfo'>
-                    <p className='mb-0'>
-                        <small>
-                            El equipo de comunicación podrá cambiar el estado de "Creado" a "En curso" y una vez finalizado lo
-                            cambiará a "Finalizado".
-                        </small>
-                    </p>
-                    <p className='mb-0'>
-                        <small>
-                            Si considerás que el trabajo está listo podrás cambiarle el estado a "Cerrado", esto hará que se deje
-                            de visualizar en esta página.
-                        </small>
-                    </p>
-                    <p className='mb-0'>
-                        <small>De esta forma evitamos que se acumulen muchos pedidos.</small>
-                    </p>
-                    <p>
-                        <small>
-                            *El pedido cambiará su estado a "Cerrado" autómaticamente luego de 7 días de haber sido "Finalizado".
-                        </small>
-                    </p>
-                </div>
-            </div>
-
+            <PedidosDetailsStateInfo />
             <DropdownButton variant='primary' drop='down' id='dropdown-basic-button' title='Cambiar estado'>
                 {pedido.state === 'created' && (
                     <Dropdown.Item
+                        disabled={userType === 'reparticion'}
                         onClick={() => {
                             changeState(pedido, pedido.state)
                         }}
@@ -75,6 +56,7 @@ const PedidosDetailsState = ({ pedido }) => {
                 )}
                 {pedido.state === 'inProgress' && (
                     <Dropdown.Item
+                        disabled={userType === 'reparticion'}
                         onClick={() => {
                             changeState(pedido, pedido.state)
                         }}
@@ -84,6 +66,7 @@ const PedidosDetailsState = ({ pedido }) => {
                 )}
                 {pedido.state === 'finalized' && (
                     <Dropdown.Item
+                        disabled={userType === 'admin'}
                         onClick={() => {
                             changeState(pedido, pedido.state)
                         }}

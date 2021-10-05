@@ -26,7 +26,7 @@ const PedidoDetailsWeb = ({ pedido }) => {
                         {pedido.type === 'noticia' || 'crear' ? 'publicación' : pedido.type === 'modificar' && 'modificación'}:
                     </td>
                     <td>
-                        <span className='bold'>{pedido.fomatedDate || pedido.formatedDate}</span>
+                        <span className='bold'>{pedido.createAt.toDate().toLocaleDateString('en-GB')}</span>
                     </td>
                 </tr>
                 {pedido.type === 'noticia' ? (

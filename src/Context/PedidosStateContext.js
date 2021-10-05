@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import { projectFirestore, timestamp } from '../firebase'
 
 const PedidosStateContext = createContext()
@@ -10,7 +10,7 @@ export const usePedidosState = () => {
 }
 
 export const PedidosStateProvider = ({ children }) => {
-    const changeState = (pedido, current) => {
+    const changeState = async (pedido, current) => {
         let data = {
             ...pedido,
             state: current === 'created' ? 'inProgress' : current === 'inProgress' ? 'finalized' : 'closed',
@@ -27,7 +27,24 @@ export const PedidosStateProvider = ({ children }) => {
             .catch(err => console.log(err))
     }
 
-    const value = { changeState }
+    const autoCloseState = async pedido => {
+        let data = {
+            ...pedido,
+            state: 'closed',
+        }
+
+        const projectColection = projectFirestore.collection('pedidos')
+        const projectDoc = projectColection.doc(pedido.id)
+
+        return projectDoc
+            .update({
+                ...data,
+            })
+            .then()
+            .catch(err => console.log(err))
+    }
+
+    const value = { changeState, autoCloseState }
 
     return <Provider value={value}>{children}</Provider>
 }

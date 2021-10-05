@@ -96,7 +96,8 @@ span.toUppercase,
 td.toUppercase {
     text-transform: uppercase;
 }
-span.bold {
+span.bold,
+td.bold {
     font-weight: 700;
 }
 .dropdown,
@@ -520,6 +521,7 @@ footer p {
 .secondsStep .secondsStepInner {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: var(--spacer);
 }
 .secondsStep .secondStep {

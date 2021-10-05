@@ -9,7 +9,7 @@ const CrearPedidoInnerSomos = lazy(() => import('./CrearPedidoInnerSomos'))
 
 const CrearPedidoInnerType = ({ pedidoType }) => {
     return (
-        <Col lg={7}>
+        <Col lg={9}>
             <Card className='secondsStep'>
                 <Card.Header>{pedidoType.name}</Card.Header>
                 <Card.Body>
