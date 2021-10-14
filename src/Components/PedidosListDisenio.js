@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth } from '../Context/AuthContext'
 import PedidosListDisenioTRow from './PedidosListDisenioTRow'
 
-const PedidosListDisenio = ({ pedidos, selectPedido, filter }) => {
+const PedidosListDisenio = ({ pedidos, selectPedido, filter, pedidosOpen }) => {
     const { userType, currentUser } = useAuth()
 
     return (
@@ -21,9 +21,19 @@ const PedidosListDisenio = ({ pedidos, selectPedido, filter }) => {
             <tbody>
                 {pedidos.map(pedido => {
                     if (pedido.pedido !== 'disenio') return
-                    if (pedido.state === 'closed') return
-                    if (filter) {
-                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                    if (pedidosOpen) {
+                        if (pedido.state === 'closed') return
+                        if (filter) {
+                            if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                                return (
+                                    <PedidosListDisenioTRow
+                                        key={pedido.id}
+                                        pedido={pedido}
+                                        filter={filter}
+                                        selectPedido={selectPedido}
+                                    />
+                                )
+                        } else {
                             return (
                                 <PedidosListDisenioTRow
                                     key={pedido.id}
@@ -32,10 +42,17 @@ const PedidosListDisenio = ({ pedidos, selectPedido, filter }) => {
                                     selectPedido={selectPedido}
                                 />
                             )
+                        }
                     } else {
-                        return (
-                            <PedidosListDisenioTRow key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
-                        )
+                        if (pedido.state === 'closed')
+                            return (
+                                <PedidosListDisenioTRow
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
                     }
                 })}
             </tbody>

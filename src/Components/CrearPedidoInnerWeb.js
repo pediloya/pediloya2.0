@@ -4,6 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useCrearPedido } from '../Context/CrearPedidoContext'
 import { useAutors } from '../Context/AutorsContext'
 import { useTeamNotificationsContext } from '../Context/TeamNotificationsContext'
+import { useTimeAhead } from '../Context/TimeAheadContext'
 import { types } from '../Assets/data'
 import CrearPedidoStepDayP from './DayPicker'
 import CrearPedidoInnerAutor from './CrearPedidoInnerAutor'
@@ -36,6 +37,8 @@ const CrearPedidoInnerWeb = () => {
     const { autorName, autorEmail, emailsToCopyArray, emailsToCopy, handleNewAutor } = useAutors()
 
     const { web: webType } = types
+
+    const { timeAheadWeb } = useTimeAhead()
 
     const { teamMembers } = useTeamNotificationsContext()
 
@@ -234,7 +237,11 @@ const CrearPedidoInnerWeb = () => {
                         <hr />
                         <div className='d-flex flex-wrap justify-content-evenly align-items-center'>
                             <div>
-                                <CrearPedidoStepDayP timeAhead={0} label={'Fecha de publicación'} handleFunction={handleDay} />
+                                <CrearPedidoStepDayP
+                                    timeAhead={timeAheadWeb.time}
+                                    label={'Fecha de publicación'}
+                                    handleFunction={handleDay}
+                                />
                             </div>
                             <div>
                                 <CrearPedidoInnerAutor secondSelect={secondSelect} />

@@ -30,7 +30,7 @@ const CuentaNotificaciones = () => {
     return loading ? null : userData[0].empty ? null : !notificationsDone ? null : (
         <Row>
             <Col>
-                <Card>
+                <Card className='mb-3'>
                     <Card.Header>
                         <span className='material-icons'>notifications</span> Notificaciones por email
                     </Card.Header>

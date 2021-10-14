@@ -373,6 +373,15 @@ footer p {
     justify-content: space-between;
 }
 
+.timeAhead .timeAheadHeadRow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.timeAhead form > div:not(.alert) {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
 /* members */
 .membsersCard {
     padding-bottom: 0;

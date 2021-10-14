@@ -79,8 +79,12 @@ const Pedidos = () => {
                 <Col className='mb-3' lg={pedidosExpanded ? 3 : 1}>
                     <Card className={`pedidos ${pedidosExpanded ? 'expanded' : 'notExpanded'}`}>
                         <Card.Header>
-                            <div className='d-flex justify-content-between w-100'>
-                                <span className='cardTitleExpandable text-nowrap'>Hacé clic para ver el listado de pedidos</span>
+                            <div
+                                className={`d-flex w-100 ${pedidosExpanded ? 'justify-content-between' : 'justify-content-end'}`}
+                            >
+                                <span style={{ display: pedidosExpanded ? 'block' : 'none' }} className='cardTitleExpandable'>
+                                    Hacé clic para ver el listado de pedidos
+                                </span>
                                 <button
                                     onClick={() => {
                                         expandedPedidosTypeSelect()
@@ -132,14 +136,34 @@ const Pedidos = () => {
                                 )}
                                 <Table responsive='sm' bordered hover className='pedidosList'>
                                     {typeSelected === 'disenio' ? (
-                                        <PedidosListDisenio pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
+                                        <PedidosListDisenio
+                                            pedidos={pedidos}
+                                            filter={filter}
+                                            selectPedido={selectPedido}
+                                            pedidosOpen={true}
+                                        />
                                     ) : typeSelected === 'web' ? (
-                                        <PedidosListWeb pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
+                                        <PedidosListWeb
+                                            pedidos={pedidos}
+                                            filter={filter}
+                                            selectPedido={selectPedido}
+                                            pedidosOpen={true}
+                                        />
                                     ) : typeSelected === 'redes' ? (
-                                        <PedidosListRedes pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
+                                        <PedidosListRedes
+                                            pedidos={pedidos}
+                                            filter={filter}
+                                            selectPedido={selectPedido}
+                                            pedidosOpen={true}
+                                        />
                                     ) : (
                                         typeSelected === 'somos' && (
-                                            <PedidosListSomos pedidos={pedidos} filter={filter} selectPedido={selectPedido} />
+                                            <PedidosListSomos
+                                                pedidos={pedidos}
+                                                filter={filter}
+                                                selectPedido={selectPedido}
+                                                pedidosOpen={true}
+                                            />
                                         )
                                     )}
                                 </Table>

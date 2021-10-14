@@ -6,6 +6,7 @@ import CuentaNotificaciones from '../../Components/CuentaNotificaciones'
 import CuentaUpdateData from '../../Components/CuentaUpdateData'
 import CuentaUpdatePassword from '../../Components/CuentaUpdatePassword'
 import AccountData from '../../Components/AccountData'
+import CuentaTimeAhead from '../../Components/CuentaTimeAhead'
 
 const Cuenta = () => {
     return (
@@ -22,6 +23,7 @@ const Cuenta = () => {
                 <Col lg={7}>
                     <CuentaUpdateData />
                     <CuentaNotificaciones />
+                    <CuentaTimeAhead />
                 </Col>
             </Row>
         </Container>

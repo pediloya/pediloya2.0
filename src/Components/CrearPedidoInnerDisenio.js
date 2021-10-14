@@ -4,6 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useTeamNotificationsContext } from '../Context/TeamNotificationsContext'
 import { useCrearPedido } from '../Context/CrearPedidoContext'
 import { useAutors } from '../Context/AutorsContext'
+import { useTimeAhead } from '../Context/TimeAheadContext'
 import { types } from '../Assets/data'
 import CustomIcons from '../Assets/img/CustomIcons'
 import CrearPedidoStepDayP from './DayPicker'
@@ -24,6 +25,8 @@ const CrearPedidoInnerDisenio = () => {
     }, [teamMembers])
 
     const { userName } = useAuth()
+
+    const { timeAheaDisenio } = useTimeAhead()
 
     const { disenio: disenioType } = types
 
@@ -158,7 +161,7 @@ const CrearPedidoInnerDisenio = () => {
                         <div className='d-flex flex-wrap justify-content-evenly align-items-center'>
                             <div>
                                 <CrearPedidoStepDayP
-                                    timeAhead={10}
+                                    timeAhead={timeAheaDisenio.time}
                                     label={'Fecha estimada de entrega del original'}
                                     handleFunction={handleDay}
                                 />

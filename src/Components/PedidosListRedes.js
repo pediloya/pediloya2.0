@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth } from '../Context/AuthContext'
 import PedidoListRedesTRow from './PedidoListRedesTRow'
 
-const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
+const PedidosListRedes = ({ pedidos, selectPedido, filter, pedidosOpen }) => {
     const { userType, currentUser } = useAuth()
     return (
         <>
@@ -20,9 +20,19 @@ const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
             <tbody>
                 {pedidos.map((pedido, i) => {
                     if (pedido.pedido !== 'redes') return
-                    if (pedido.state === 'closed') return
-                    if (filter) {
-                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                    if (pedidosOpen) {
+                        if (pedido.state === 'closed') return
+                        if (filter) {
+                            if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                                return (
+                                    <PedidoListRedesTRow
+                                        key={pedido.id}
+                                        pedido={pedido}
+                                        filter={filter}
+                                        selectPedido={selectPedido}
+                                    />
+                                )
+                        } else {
                             return (
                                 <PedidoListRedesTRow
                                     key={pedido.id}
@@ -31,8 +41,17 @@ const PedidosListRedes = ({ pedidos, selectPedido, filter }) => {
                                     selectPedido={selectPedido}
                                 />
                             )
+                        }
                     } else {
-                        return <PedidoListRedesTRow key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
+                        if (pedido.state === 'closed')
+                            return (
+                                <PedidoListRedesTRow
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
                     }
                 })}
             </tbody>

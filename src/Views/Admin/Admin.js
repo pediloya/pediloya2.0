@@ -8,8 +8,8 @@ import Pedidos from './Pedidos'
 import EditarDescargas from './EditarDescargas'
 import CrearUsuario from './CrearUsuario'
 import Pedido from './Pedido'
-import NotFound from '../NotFound'
 import PedidosCerrados from './PedidosCerrados'
+import NotFound from '../NotFound'
 
 const Admin = () => {
     return (

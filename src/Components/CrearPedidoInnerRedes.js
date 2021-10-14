@@ -4,6 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useCrearPedido } from '../Context/CrearPedidoContext'
 import { useAutors } from '../Context/AutorsContext'
 import { useTeamNotificationsContext } from '../Context/TeamNotificationsContext'
+import { useTimeAhead } from '../Context/TimeAheadContext'
 import { types } from '../Assets/data'
 import CrearPedidoStepDayP from './DayPicker'
 import CrearPedidoInnerAutor from '../Components/CrearPedidoInnerAutor'
@@ -38,7 +39,10 @@ const CrearPedidoInnerRedes = () => {
         setToggle,
         handleNewPedidoRedes,
     } = useCrearPedido()
+
     const { autorName, autorEmail, emailsToCopyArray, emailsToCopy, handleNewAutor } = useAutors()
+
+    const { timeAheadRedes } = useTimeAhead()
 
     const { redes: redesType } = types
 
@@ -156,7 +160,11 @@ const CrearPedidoInnerRedes = () => {
                         <hr />
                         <div className='d-flex flex-wrap justify-content-evenly align-items-center'>
                             <div>
-                                <CrearPedidoStepDayP timeAhead={0} label={'Fecha de publicación'} handleFunction={handleDay} />
+                                <CrearPedidoStepDayP
+                                    timeAhead={timeAheadRedes.time}
+                                    label={'Fecha de publicación'}
+                                    handleFunction={handleDay}
+                                />
                             </div>
                             <div>
                                 <CrearPedidoInnerAutor secondSelect={secondSelect} />

@@ -19,7 +19,7 @@ const CrearPedidoStepDayP = ({ timeAhead, label, handleFunction }) => {
         if (timeAhead === 10) return setTimeAheadDisable(tenDays)
         if (timeAhead === 15) return setTimeAheadDisable(fifteenDays)
         return setTimeAheadDisable([])
-    }, [timeAheadDisable])
+    }, [timeAhead])
 
     useEffect(() => {
         setFormatedDay(null)

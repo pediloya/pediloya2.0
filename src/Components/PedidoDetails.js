@@ -43,15 +43,15 @@ const PedidoDetails = ({ pedido }) => {
                             pedido.pedido === 'redes' && <PedidoDetailsRedes pedido={pedido} />
                         )}
                     </Table>
+                    <PedidosDetailsState pedido={pedido} />
                     {userType === 'admin' && (
                         <>
-                            <PedidosDetailsState pedido={pedido} />
                             <AsignPedidos pedido={pedido} />
-                            <Button className='btn btn-primary btnMarginR' as={Link} to={`/pedido/${pedido.id}`}>
-                                Ver en página completa
-                            </Button>
                         </>
                     )}
+                    <Button className='btn btn-primary btnMarginR' as={Link} to={`/pedido/${pedido.id}`}>
+                        Ver en página completa
+                    </Button>
                 </Card.Body>
             </Card>
         </>

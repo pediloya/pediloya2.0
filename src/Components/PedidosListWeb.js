@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth } from '../Context/AuthContext'
 import PedidosListWebTRows from './PedidosListWebTRows'
 
-const PedidosListWeb = ({ pedidos, selectPedido, filter }) => {
+const PedidosListWeb = ({ pedidos, selectPedido, filter, pedidosOpen }) => {
     const { userType, currentUser } = useAuth()
 
     return (
@@ -22,9 +22,19 @@ const PedidosListWeb = ({ pedidos, selectPedido, filter }) => {
             <tbody>
                 {pedidos.map(pedido => {
                     if (pedido.pedido !== 'web') return
-                    if (pedido.state === 'closed') return
-                    if (filter) {
-                        if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                    if (pedidosOpen) {
+                        if (pedido.state === 'closed') return
+                        if (filter) {
+                            if (currentUser.uid === pedido.asignedTo?.currentUserId)
+                                return (
+                                    <PedidosListWebTRows
+                                        key={pedido.id}
+                                        pedido={pedido}
+                                        filter={filter}
+                                        selectPedido={selectPedido}
+                                    />
+                                )
+                        } else {
                             return (
                                 <PedidosListWebTRows
                                     key={pedido.id}
@@ -33,8 +43,17 @@ const PedidosListWeb = ({ pedidos, selectPedido, filter }) => {
                                     selectPedido={selectPedido}
                                 />
                             )
+                        }
                     } else {
-                        return <PedidosListWebTRows key={pedido.id} pedido={pedido} filter={filter} selectPedido={selectPedido} />
+                        if (pedido.state === 'closed')
+                            return (
+                                <PedidosListWebTRows
+                                    key={pedido.id}
+                                    pedido={pedido}
+                                    filter={filter}
+                                    selectPedido={selectPedido}
+                                />
+                            )
                     }
                 })}
             </tbody>

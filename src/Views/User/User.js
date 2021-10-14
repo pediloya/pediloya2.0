@@ -11,6 +11,7 @@ import Equipo from './Equipo'
 import CrearPedido from './CrearPedido'
 import Pedidos from './Pedidos'
 import Pedido from './Pedido'
+import PedidosCerrados from './PedidosCerrados'
 import NotFound from '../NotFound'
 
 const User = () => {
@@ -25,6 +26,7 @@ const User = () => {
                     <AuthRoute exact path='/equipo' comp={Equipo} />
                     <AuthRoute exact path='/descargables' comp={Descargas} />
                     <AuthRoute exact path='/pedido/:id' comp={Pedido} />
+                    <AuthRoute exact path='/pedidos-cerrados' comp={PedidosCerrados} />
                     <AuthRoute component={NotFound} />
                 </Switch>
             </AutorsProviders>

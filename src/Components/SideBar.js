@@ -17,6 +17,7 @@ const links = {
     'user': [
         { id: 'home', title: 'Inicio', icon: 'home', type: 'link', path: '/' },
         { id: 'pedidos', title: 'Ver pedidos', icon: 'pageview', type: 'link', path: '/pedidos' },
+        { id: 'pedidosCerrados', title: 'Pedidos cerrados', icon: 'do_disturb', type: 'link', path: '/pedidos-cerrados' },
         { id: 'crearPedidos', title: 'Crear Pedidos', icon: 'note_add', type: 'link', path: '/crear-pedidos' },
         { id: 'equipo', title: 'Equipo', icon: 'groups', type: 'link', path: '/equipo' },
         { id: 'descargas', title: 'Descargables', icon: 'file_download', type: 'link', path: '/descargables' },
