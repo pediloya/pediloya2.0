@@ -3,9 +3,9 @@
     "static/css/0.0440f8c5.chunk.css": "/pediloya2.0/static/css/0.0440f8c5.chunk.css",
     "static/js/0.51cc9bd1.chunk.js": "/pediloya2.0/static/js/0.51cc9bd1.chunk.js",
     "static/js/0.51cc9bd1.chunk.js.map": "/pediloya2.0/static/js/0.51cc9bd1.chunk.js.map",
-    "main.css": "/pediloya2.0/static/css/main.75f11212.chunk.css",
-    "main.js": "/pediloya2.0/static/js/main.28d646ab.chunk.js",
-    "main.js.map": "/pediloya2.0/static/js/main.28d646ab.chunk.js.map",
+    "main.css": "/pediloya2.0/static/css/main.baa2ee0b.chunk.css",
+    "main.js": "/pediloya2.0/static/js/main.e1e59802.chunk.js",
+    "main.js.map": "/pediloya2.0/static/js/main.e1e59802.chunk.js.map",
     "runtime-main.js": "/pediloya2.0/static/js/runtime-main.22c4c452.js",
     "runtime-main.js.map": "/pediloya2.0/static/js/runtime-main.22c4c452.js.map",
     "static/css/3.f2512455.chunk.css": "/pediloya2.0/static/css/3.f2512455.chunk.css",
@@ -22,7 +22,7 @@
     "index.html": "/pediloya2.0/index.html",
     "static/css/0.0440f8c5.chunk.css.map": "/pediloya2.0/static/css/0.0440f8c5.chunk.css.map",
     "static/css/3.f2512455.chunk.css.map": "/pediloya2.0/static/css/3.f2512455.chunk.css.map",
-    "static/css/main.75f11212.chunk.css.map": "/pediloya2.0/static/css/main.75f11212.chunk.css.map",
+    "static/css/main.baa2ee0b.chunk.css.map": "/pediloya2.0/static/css/main.baa2ee0b.chunk.css.map",
     "static/js/3.bb8f6b16.chunk.js.LICENSE.txt": "/pediloya2.0/static/js/3.bb8f6b16.chunk.js.LICENSE.txt",
     "static/media/App.css": "/pediloya2.0/static/media/glyphicons-halflings-regular.e3cab037.woff"
   },
@@ -30,7 +30,7 @@
     "static/js/runtime-main.22c4c452.js",
     "static/css/3.f2512455.chunk.css",
     "static/js/3.bb8f6b16.chunk.js",
-    "static/css/main.75f11212.chunk.css",
-    "static/js/main.28d646ab.chunk.js"
+    "static/css/main.baa2ee0b.chunk.css",
+    "static/js/main.e1e59802.chunk.js"
   ]
 }
