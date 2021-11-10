@@ -5,6 +5,10 @@ import { Container, Row, Col } from 'react-bootstrap'
 import PedidosPreview from '../../Components/PedidosPreview'
 import AccountData from '../../Components/AccountData'
 import DescargasCard from '../../Components/DescargasCard'
+import CuentaNotificaciones from '../../Components/CuentaNotificaciones'
+import CuentaUpdateData from '../../Components/CuentaUpdateData'
+import CuentaTimeAhead from '../../Components/CuentaTimeAhead'
+import CuentaUpdatePassword from '../../Components/CuentaUpdatePassword'
 
 const Home = () => {
     const { pedidos } = useAllPedidos()
@@ -32,11 +36,19 @@ const Home = () => {
                 <hr />
             </div>
             <Row>
-                <Col md={5}>
-                    <AccountData hasLink={true} />
+                <Col md={12}>
+                    <h3 className='mb-4'>Accesos rápidos</h3>
                 </Col>
-                <Col md={4}>
-                    <DescargasCard hasLink={true} />
+                <Col lg={6} xl={4}>
+                    <AccountData hasLink={true} />
+                    <CuentaUpdatePassword />
+                </Col>
+                <Col lg={6} xl={4}>
+                    <CuentaUpdateData />
+                    <CuentaNotificaciones />
+                </Col>
+                <Col lg={12} xl={4}>
+                    <CuentaTimeAhead />
                 </Col>
             </Row>
         </Container>

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useAuth } from './AuthContext'
 import { useFirestoreCollWhere, newDocument, updateDocument } from '../Hooks/useFirestore'
+import { projectFirestore, timestamp } from '../firebase'
 
 const UserDataContext = createContext()
 
@@ -52,11 +53,38 @@ export const UserDataProvider = ({ children }) => {
         updateDocument('usuarios', { name, email }, id)
     }
 
+    const [updateNotifLoading, setUpdateNotifLoading] = useState(false)
+    const [successMess, setSuccessMess] = useState('')
+
     const updateNotifications = async (type, notifications, id) => {
-        updateDocument('usuarios', { [type]: notifications }, id)
+        setUpdateNotifLoading(true)
+
+        const createAt = timestamp()
+
+        const projectColection = projectFirestore.collection('usuarios')
+        const projectDoc = projectColection.doc(id)
+
+        let data = { [type]: notifications }
+
+        return projectDoc
+            .update({
+                ...data,
+                createAt,
+            })
+            .then(() => {
+                setUpdateNotifLoading(false)
+                setSuccessMess('Se guardó correctamente')
+            })
+            .then(() => {
+                const timer = setTimeout(() => {
+                    setSuccessMess('')
+                }, [3000])
+                return () => clearInterval(timer)
+            })
+            .catch(err => console.log(err))
     }
 
-    const value = { loading, userData, createData, updateData, updateNotifications }
+    const value = { loading, userData, createData, updateData, updateNotifications, updateNotifLoading, successMess }
 
     return <Provider value={value}>{children}</Provider>
 }

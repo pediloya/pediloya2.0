@@ -17,6 +17,8 @@ export const TimeAheadProvider = ({ children }) => {
     const [timeAheadRedes, setTimeAheadRedes] = useState(0)
     const [timeAheaDisenio, setTimeAheaDisenio] = useState(0)
     const [timeaheadId, setTimeaheadId] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [successMess, setSuccessMess] = useState('')
 
     useEffect(() => {
         if (!currentUser) return
@@ -33,26 +35,28 @@ export const TimeAheadProvider = ({ children }) => {
         return () => unsub()
     }, [])
 
-    const changeTimeAhead = data => {
-        /* console.log(data) */
+    const changeTimeAhead = async data => {
         const projectColection = projectFirestore.collection('timeahead')
         const projectDoc = projectColection.doc(timeaheadId)
-
-        console.log(data)
-
+        setLoading(true)
         return projectDoc
             .update({
                 ...data,
             })
-            .then(res => {
-                console.log(res)
+            .then(() => {
+                setLoading(false)
+                setSuccessMess('Se guardó correctamente')
+                const timer = setTimeout(() => {
+                    setSuccessMess('')
+                }, [3000])
+                return () => clearInterval(timer)
             })
             .catch(err => {
                 console.log(err)
             })
     }
 
-    const value = { timeAheadWeb, timeAheadRedes, timeAheaDisenio, changeTimeAhead }
+    const value = { timeAheadWeb, timeAheadRedes, timeAheaDisenio, changeTimeAhead, loading, successMess }
 
     return <Provider value={value}>{children}</Provider>
 }

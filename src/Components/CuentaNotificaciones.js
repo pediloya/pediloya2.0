@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Form, Row, Col, Button } from 'react-bootstrap'
+import { Card, Form, Row, Col, Button, Alert } from 'react-bootstrap'
 import { useUserData } from '../Context/UserDataContext'
+import Loading from './Loading'
 
 const CuentaNotificaciones = () => {
-    const { loading, userData, updateNotifications } = useUserData()
+    const { loading, userData, updateNotifications, updateNotifLoading, successMess } = useUserData()
 
     const [emailNotifications, setEmailNotifications] = useState(null)
     const [notificationsDone, setNotificationsDone] = useState(false)
@@ -56,6 +57,8 @@ const CuentaNotificaciones = () => {
                                     </Form.Group>
                                 )
                             })}
+                            {successMess && <Alert variant='success'>{successMess}</Alert>}
+                            {updateNotifLoading && <Loading />}
                             <Form.Group>
                                 <Button type='submit' onClick={e => e.preventDefault}>
                                     Guardar

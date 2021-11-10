@@ -32,12 +32,13 @@ const Home = () => {
                 <hr />
             </div>
             <Row>
-                <Col md={5}>
+                <Col md={4}>
                     <AccountData hasLink={true} />
                 </Col>
                 <Col md={4}>
                     <DescargasCard hasLink={true} />
                 </Col>
+                <Col md={4}>{/* <DescargasCard hasLink={true} /> */}</Col>
             </Row>
         </Container>
     )

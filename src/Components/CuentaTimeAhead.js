@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useTimeAhead } from '../Context/TimeAheadContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
+import Loading from './Loading'
 
 const CuentaTimeAhead = () => {
-    const { timeAheadWeb, timeAheadRedes, timeAheaDisenio, changeTimeAhead } = useTimeAhead()
+    const { timeAheadWeb, timeAheadRedes, timeAheaDisenio, changeTimeAhead, loading, successMess } = useTimeAhead()
 
     const [disenioCheck, setDisenioCheck] = useState(0)
     const [webCheck, setWebCheck] = useState(0)
     const [redesCheck, setRedesCheck] = useState(0)
 
     const [error, setError] = useState('')
-
-    console.log(timeAheadWeb)
 
     let checkListDisenio = [
         { id: 'disenio-0', class: 'disenio', name: 'Diseño', value: 0 },
@@ -133,6 +132,8 @@ const CuentaTimeAhead = () => {
                             )
                         })}
                     </Form.Group>
+                    {loading && <Loading />}
+                    {successMess && <Alert variant='success'>{successMess}</Alert>}
                     {error && <Alert variant='danger'>{error}</Alert>}
                     <Button type='submit'>Guardar</Button>
                 </Form>
