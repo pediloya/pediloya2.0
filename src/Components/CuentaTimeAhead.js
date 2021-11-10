@@ -3,7 +3,7 @@ import { useTimeAhead } from '../Context/TimeAheadContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import Loading from './Loading'
 
-const CuentaTimeAhead = () => {
+const CuentaTimeAhead = ({ hasToggle }) => {
     const { timeAheadWeb, timeAheadRedes, timeAheaDisenio, changeTimeAhead, loading, successMess } = useTimeAhead()
 
     const [disenioCheck, setDisenioCheck] = useState(0)
@@ -70,12 +70,26 @@ const CuentaTimeAhead = () => {
         changeTimeAhead(data)
     }
 
+    const [isToggle, setIsToggle] = useState(false)
+
+    const toggle = () => {
+        if (hasToggle) setIsToggle(isToggle => !isToggle)
+    }
+
     return (
-        <Card className='timeAhead'>
+        <Card className={hasToggle ? 'w-100 mb-3 withToggle timeAhead' : 'w-100 mb-3 timeAhead'}>
             <Card.Header>
-                <span className='material-icons'>hourglass_full</span>Controlá el lapso de tiempo para cada tipo de pedido
+                <div>
+                    <span className='material-icons'>hourglass_full</span>Controlá el lapso de tiempo para cada tipo de pedido
+                </div>
+                {console.log(hasToggle)}
+                {hasToggle && (
+                    <div onClick={() => toggle()}>
+                        <span className='material-icons'>{isToggle ? 'expand_less' : 'expand_more'}</span>
+                    </div>
+                )}
             </Card.Header>
-            <Card.Body>
+            <Card.Body className={isToggle ? 'show' : 'notShow'}>
                 <div className='timeAheadHeadRow'>
                     <p>Tipo de pedido</p>
                     <p>0 días</p>

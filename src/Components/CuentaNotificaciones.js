@@ -3,7 +3,7 @@ import { Card, Form, Row, Col, Button, Alert } from 'react-bootstrap'
 import { useUserData } from '../Context/UserDataContext'
 import Loading from './Loading'
 
-const CuentaNotificaciones = () => {
+const CuentaNotificaciones = ({ hasToggle }) => {
     const { loading, userData, updateNotifications, updateNotifLoading, successMess } = useUserData()
 
     const [emailNotifications, setEmailNotifications] = useState(null)
@@ -28,14 +28,27 @@ const CuentaNotificaciones = () => {
         updateNotifications('emailNotifications', emailNotifications, userData[0].id)
     }
 
+    const [isToggle, setIsToggle] = useState(false)
+
+    const toggle = () => {
+        if (hasToggle) setIsToggle(isToggle => !isToggle)
+    }
+
     return loading ? null : userData[0].empty ? null : !notificationsDone ? null : (
         <Row>
             <Col>
-                <Card className='mb-3'>
+                <Card className={hasToggle ? 'w-100 mb-3 withToggle' : 'w-100 mb-3'}>
                     <Card.Header>
-                        <span className='material-icons'>notifications</span> Notificaciones por email
+                        <div>
+                            <span className='material-icons'>notifications</span> Notificaciones por email
+                        </div>
+                        {hasToggle && (
+                            <div onClick={() => toggle()}>
+                                <span className='material-icons'>{isToggle ? 'expand_less' : 'expand_more'}</span>
+                            </div>
+                        )}
                     </Card.Header>
-                    <Card.Body>
+                    <Card.Body className={isToggle ? 'show' : 'notShow'}>
                         <Form className='notificationsConfig' onSubmit={e => handleUpdateEmailNotifications(e)}>
                             {emailNotifications.map(notify => {
                                 return (

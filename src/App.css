@@ -267,7 +267,8 @@ footer p {
     background: var(--white);
     box-shadow: var(--shadow-2);
 }
-.card .card-header {
+.card .card-header,
+.card .card-header > div:first-child {
     background: transparent;
     border-bottom-color: var(--grey);
     display: flex;
@@ -817,4 +818,26 @@ footer p {
 }
 .notExpanded .materialBtn {
     transform: rotate(0);
+}
+
+.card.withToggle .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.card.withToggle .card-header > div:last-child {
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+.card.withToggle .card-body {
+    transition: max-height 150ms ease-in, opacity 100ms ease-in, padding 75ms ease-in;
+    max-height: 400px;
+}
+.card.withToggle .card-body.notShow {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
 }

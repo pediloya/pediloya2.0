@@ -41,14 +41,14 @@ const Home = () => {
                 </Col>
                 <Col lg={6} xl={4}>
                     <AccountData hasLink={true} />
-                    <CuentaUpdatePassword />
+                    <CuentaUpdatePassword hasToggle={true} />
                 </Col>
                 <Col lg={6} xl={4}>
-                    <CuentaUpdateData />
-                    <CuentaNotificaciones />
+                    <CuentaUpdateData hasToggle={true} />
+                    <CuentaNotificaciones hasToggle={true} />
                 </Col>
                 <Col lg={12} xl={4}>
-                    <CuentaTimeAhead />
+                    <CuentaTimeAhead hasToggle={true} />
                 </Col>
             </Row>
         </Container>

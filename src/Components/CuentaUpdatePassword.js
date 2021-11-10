@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../Context/AuthContext'
 
-const CuentaUpdatePassword = () => {
+const CuentaUpdatePassword = ({ hasToggle }) => {
     const { updatePassword, updatePasswordError } = useAuth()
 
     const [loading, setLoading] = useState(false)
@@ -51,12 +51,25 @@ const CuentaUpdatePassword = () => {
         return
     }, [updatePasswordError])
 
+    const [isToggle, setIsToggle] = useState(false)
+
+    const toggle = () => {
+        if (hasToggle) setIsToggle(isToggle => !isToggle)
+    }
+
     return (
-        <Card className='w-100 mb-3'>
+        <Card className={hasToggle ? 'w-100 mb-3 withToggle' : 'w-100 mb-3'}>
             <Card.Header>
-                <span className='material-icons'>lock</span> Cambiar contraseña
+                <div>
+                    <span className='material-icons'>lock</span> Cambiar contraseña
+                </div>
+                {hasToggle && (
+                    <div onClick={() => toggle()}>
+                        <span className='material-icons'>{isToggle ? 'expand_less' : 'expand_more'}</span>
+                    </div>
+                )}
             </Card.Header>
-            <Card.Body>
+            <Card.Body className={isToggle ? 'show' : 'notShow'}>
                 {error && <Alert variant='danger'>{error}</Alert>}
                 <Form onSubmit={e => handleChangePassword(e)}>
                     <Form.Group className='formGroup'>

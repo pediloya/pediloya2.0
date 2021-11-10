@@ -4,7 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useUserData } from '../Context/UserDataContext'
 import Loading from './Loading'
 
-const CuentaUpdateData = () => {
+const CuentaUpdateData = ({ hasToggle }) => {
     const { userType } = useAuth()
     const { loading, userData, createData, updateData } = useUserData()
 
@@ -41,16 +41,29 @@ const CuentaUpdateData = () => {
         setEmail(e.target.value)
     }
 
+    const [isToggle, setIsToggle] = useState(false)
+
+    const toggle = () => {
+        if (hasToggle) setIsToggle(isToggle => !isToggle)
+    }
+
     return (
         <>
-            <Card className='w-100 mb-3'>
+            <Card className={hasToggle ? 'w-100 mb-3 withToggle' : 'w-100 mb-3'}>
                 <Card.Header>
-                    <span className='material-icons'>manage_accounts</span>{' '}
-                    {userType === 'admin'
-                        ? 'Configurá tu usuario para recibir notificaciones por email'
-                        : 'Información adicional'}
+                    <div>
+                        <span className='material-icons'>manage_accounts</span>{' '}
+                        {userType === 'admin'
+                            ? 'Configurá tu usuario para recibir notificaciones por email'
+                            : 'Información adicional'}
+                    </div>
+                    {hasToggle && (
+                        <div onClick={() => toggle()}>
+                            <span className='material-icons'>{isToggle ? 'expand_less' : 'expand_more'}</span>
+                        </div>
+                    )}
                 </Card.Header>
-                <Card.Body>
+                <Card.Body className={isToggle ? 'show' : 'notShow'}>
                     {loading ? (
                         <Loading />
                     ) : userData[0].empty || edit ? (
