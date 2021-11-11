@@ -39,9 +39,19 @@ const PedidoDetailsRedes = ({ pedido }) => {
                 <tr>
                     <td>Imágenes: </td>
                     <td>
-                        <a href={pedido.img} target='_blank' rel='noreferrer'>
-                            {pedido.img}
-                        </a>
+                        {isMoreThanOneUrl(pedido.img) ? (
+                            pedido.img.split(/[,;]+/).map(url => {
+                                return (
+                                    <a href={url} target='_blank' rel='noreferrer'>
+                                        {url}
+                                    </a>
+                                )
+                            })
+                        ) : (
+                            <a href={pedido.img} target='_blank' rel='noreferrer'>
+                                {pedido.img}
+                            </a>
+                        )}
                     </td>
                 </tr>
                 <tr>

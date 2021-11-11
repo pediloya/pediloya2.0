@@ -147,6 +147,11 @@ const CrearPedidoInnerDisenio = () => {
                                 {...bindDisenioText}
                                 name={toggle ? 'entry.1363177458' : 'entry.1613931701'}
                             />
+                            {!toggle ? (
+                                <small>
+                                    Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)
+                                </small>
+                            ) : null}
                         </Form.Group>
                         <Form.Group className='formGroup'>
                             <Form.Label>Imagenes de referencia:</Form.Label>
@@ -156,6 +161,8 @@ const CrearPedidoInnerDisenio = () => {
                                 name='entry.1832041010'
                             />
                             <small>Subi las imagenes a GoogleDrive/DropBox y pega el enlace</small>
+                            <br />
+                            <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
                         </Form.Group>
                         <hr />
                         <div className='d-flex flex-wrap justify-content-evenly align-items-center'>

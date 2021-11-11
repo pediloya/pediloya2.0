@@ -155,6 +155,8 @@ const CrearPedidoInnerRedes = () => {
                                 name='entry.819190360'
                             />
                             <small>Subi las imagenes a GoogleDrive/DropBox y pega el enlace</small>
+                            <br />
+                            <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
                         </Form.Group>
 
                         <hr />

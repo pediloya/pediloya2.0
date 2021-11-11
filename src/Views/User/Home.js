@@ -5,6 +5,7 @@ import { usePedidos } from '../../Context/PedidosContext'
 import PedidosPreview from '../../Components/PedidosPreview'
 import DescargasCard from '../../Components/DescargasCard'
 import AccountData from '../../Components/AccountData'
+import AutorsSnippet from '../../Components/AutorsSnippet'
 
 const Home = () => {
     const { pedidos } = usePedidos()
@@ -38,7 +39,9 @@ const Home = () => {
                 <Col md={4}>
                     <DescargasCard hasLink={true} />
                 </Col>
-                <Col md={4}>{/* <DescargasCard hasLink={true} /> */}</Col>
+                <Col md={4}>
+                    <AutorsSnippet />
+                </Col>
             </Row>
         </Container>
     )

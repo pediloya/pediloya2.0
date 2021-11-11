@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../Context/AuthContext'
-import { isValidURL } from '../Assets/Regex'
+import { isMoreThanOneUrl, isValidURL } from '../Assets/Regex'
 
 const PedidoDetailsDisenio = ({ pedido }) => {
     const { userType } = useAuth()
@@ -39,9 +39,19 @@ const PedidoDetailsDisenio = ({ pedido }) => {
                     <td>Texto para la pieza:</td>
                     <td>
                         {isValidURL(pedido.text) ? (
-                            <a href={pedido.text} target='_blank' rel='noreferrer'>
-                                {pedido.text}
-                            </a>
+                            isMoreThanOneUrl(pedido.text) ? (
+                                pedido.text.split(/[,;]+/).map(url => {
+                                    return (
+                                        <a href={url} target='_blank' rel='noreferrer'>
+                                            {url}
+                                        </a>
+                                    )
+                                })
+                            ) : (
+                                <a href={pedido.text} target='_blank' rel='noreferrer'>
+                                    {pedido.text}
+                                </a>
+                            )
                         ) : (
                             pedido.text
                         )}
@@ -50,9 +60,19 @@ const PedidoDetailsDisenio = ({ pedido }) => {
                 <tr>
                     <td>Imágenes:</td>
                     <td>
-                        <a href={pedido.img} target='_blank' rel='noreferrer'>
-                            {pedido.img}
-                        </a>
+                        {isMoreThanOneUrl(pedido.img) ? (
+                            pedido.img.split(/[,;]+/).map(url => {
+                                return (
+                                    <a href={url} target='_blank' rel='noreferrer'>
+                                        {url}
+                                    </a>
+                                )
+                            })
+                        ) : (
+                            <a href={pedido.img} target='_blank' rel='noreferrer'>
+                                {pedido.img}
+                            </a>
+                        )}
                     </td>
                 </tr>
                 <tr>

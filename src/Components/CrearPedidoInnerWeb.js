@@ -170,6 +170,10 @@ const CrearPedidoInnerWeb = () => {
                                     Recordá que tanto las páginas como las noticias web deben contar con un titulo, una
                                     descripción y un cuerpo{' '}
                                 </small>
+                                <br />
+                                <small>
+                                    Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)
+                                </small>
                             </Form.Group>
                         )}
                         <Form.Group className='formGroup'>
@@ -181,6 +185,8 @@ const CrearPedidoInnerWeb = () => {
                                 placeholder='https://drive.google.com/drive/my-drive'
                             />
                             <small>Subi las imagenes a GoogleDrive/DropBox y pega el enlace</small>
+                            <br />
+                            <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
                         </Form.Group>
                     </>
                 )}
@@ -194,6 +200,8 @@ const CrearPedidoInnerWeb = () => {
                                 {...bindLinkToModify}
                                 placeholder='www.buenosaires.gob.ar/gobierno/...'
                             />
+
+                            <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
                         </Form.Group>
                         {toggle ? (
                             <Form.Group className='formGroup'>
@@ -218,6 +226,10 @@ const CrearPedidoInnerWeb = () => {
                                     Recordá que tanto las páginas como las noticias web deben contar con un titulo, una
                                     descripción y un cuerpo{' '}
                                 </small>
+                                <br />
+                                <small>
+                                    Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)
+                                </small>
                             </Form.Group>
                         )}
                         <Form.Group className='formGroup'>
@@ -228,7 +240,9 @@ const CrearPedidoInnerWeb = () => {
                                 {...bindWebImg}
                                 placeholder='https://drive.google.com/drive/my-drive'
                             />
-                            <small>Subi las imagenes a GoogleDrive/DropBox y pega el enlace</small>
+                            <small>Subí las imagenes a GoogleDrive/DropBox y pega el enlace</small>
+                            <br />
+                            <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
                         </Form.Group>
                     </>
                 )}

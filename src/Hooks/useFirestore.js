@@ -37,7 +37,7 @@ export const useFirestoreDoc = (collection, document) => {
             .collection(collection)
             .doc(document)
             .onSnapshot(snap => {
-                setDocs(snap.data())
+                snap.data() === undefined ? setDocs([]) : setDocs(snap.data())
             })
 
         return () => unsub()

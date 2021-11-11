@@ -6,6 +6,11 @@ export const isEmail = email => {
     return false
 }
 
+export const isMoreThanOneUrl = string => {
+    if (string.includes(';') || string.includes(',')) return true
+    return false
+}
+
 export const isValidURL = string => {
     let url = ''
 

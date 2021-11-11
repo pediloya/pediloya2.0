@@ -1,4 +1,0 @@
-
-home reparticion, agregar recuadro con listado de usuarios, correos y correos en copia guardados si es que existen. 
-
-separar más de un link en cuadro de vistas del pedido

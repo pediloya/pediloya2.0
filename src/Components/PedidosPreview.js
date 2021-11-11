@@ -10,11 +10,6 @@ const PedidosPreview = ({ pedidos }) => {
     const [pedidosSomos, setPedidosSomos] = useState([])
 
     useEffect(() => {
-        console.log('pedidos de diseño => ', pedidosDisenio)
-        console.log('length pedidos de diseño => ', pedidosDisenio.length)
-    }, [pedidosDisenio])
-
-    useEffect(() => {
         if (pedidos.length === 0) return
         if (pedidos[0].empty) return
         pedidos.forEach(pedido => {

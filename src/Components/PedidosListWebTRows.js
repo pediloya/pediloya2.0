@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../Context/AuthContext'
-import { isValidURL } from '../Assets/Regex'
+import { isMoreThanOneUrl, isValidURL } from '../Assets/Regex'
 
 const PedidosListWebTRows = ({ pedido, selectPedido }) => {
     const { userType } = useAuth()
@@ -17,9 +17,19 @@ const PedidosListWebTRows = ({ pedido, selectPedido }) => {
                 pedido.changes ? (
                     <td>
                         {isValidURL(pedido.changes) ? (
-                            <a href={pedido.changes} target='_blank' title='enlace'>
-                                Enlace
-                            </a>
+                            isMoreThanOneUrl(pedido.changes) ? (
+                                pedido.changes.split(/[,;]+/).map(url => {
+                                    return (
+                                        <a href={url} target='_blank' rel='noreferrer'>
+                                            {url}
+                                        </a>
+                                    )
+                                })
+                            ) : (
+                                <a href={pedido.changes} target='_blank' title='enlace'>
+                                    Enlace
+                                </a>
+                            )
                         ) : (
                             pedido.changes
                         )}

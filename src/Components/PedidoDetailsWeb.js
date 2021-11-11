@@ -1,5 +1,5 @@
 import React from 'react'
-import { isValidURL } from '../Assets/Regex'
+import { isMoreThanOneUrl, isValidURL } from '../Assets/Regex'
 
 const PedidoDetailsWeb = ({ pedido }) => {
     return (
@@ -48,7 +48,21 @@ const PedidoDetailsWeb = ({ pedido }) => {
                     ) : (
                         <tr>
                             <td>Enlace al contenido:</td>
-                            <td>{pedido.linkToContent}</td>
+                            <td>
+                                {isMoreThanOneUrl(pedido.linkToContent) ? (
+                                    pedido.linkToContent.split(/[,;]+/).map(url => {
+                                        return (
+                                            <a href={url} target='_blank' rel='noreferrer'>
+                                                {url}
+                                            </a>
+                                        )
+                                    })
+                                ) : (
+                                    <a href={pedido.linkToContent} target='_blank' rel='noreferrer'>
+                                        {pedido.linkToContent}
+                                    </a>
+                                )}
+                            </td>
                         </tr>
                     )
                 ) : pedido.type === 'crear' ? (
@@ -71,9 +85,19 @@ const PedidoDetailsWeb = ({ pedido }) => {
                         <tr>
                             <td>Enlace al contenido:</td>
                             <td>
-                                <a href={pedido.linkToContent} target='_blank' rel='noreferrer'>
-                                    {pedido.linkToContent}
-                                </a>
+                                {isMoreThanOneUrl(pedido.linkToContent) ? (
+                                    pedido.linkToContent.split(/[,;]+/).map(url => {
+                                        return (
+                                            <a href={url} target='_blank' rel='noreferrer'>
+                                                {url}
+                                            </a>
+                                        )
+                                    })
+                                ) : (
+                                    <a href={pedido.linkToContent} target='_blank' rel='noreferrer'>
+                                        {pedido.linkToContent}
+                                    </a>
+                                )}
                             </td>
                         </tr>
                     )
@@ -82,14 +106,40 @@ const PedidoDetailsWeb = ({ pedido }) => {
                         <tr>
                             <td>Web a modificar:</td>
                             <td>
-                                <a href={pedido.webToModify} target='_blank' rel='noreferrer'>
-                                    {pedido.webToModify}
-                                </a>
+                                {isMoreThanOneUrl(pedido.webToModify) ? (
+                                    pedido.webToModify.split(/[,;]+/).map(url => {
+                                        return (
+                                            <a href={url} target='_blank' rel='noreferrer'>
+                                                {url}
+                                            </a>
+                                        )
+                                    })
+                                ) : (
+                                    <a href={pedido.webToModify} target='_blank' rel='noreferrer'>
+                                        {pedido.webToModify}
+                                    </a>
+                                )}
                             </td>
                         </tr>
                         <tr>
                             <td>Cambios a realizar:</td>
-                            <td>{isValidURL(pedido.changes) ? <a href={pedido.changes}>{pedido.changes}</a> : pedido.changes}</td>
+                            <td>
+                                {isValidURL(pedido.changes) ? (
+                                    isMoreThanOneUrl(pedido.changes) ? (
+                                        pedido.changes.split(/[,;]+/).map(url => {
+                                            return (
+                                                <a href={url} target='_blank' rel='noreferrer'>
+                                                    {url}
+                                                </a>
+                                            )
+                                        })
+                                    ) : (
+                                        <a href={pedido.changes}>{pedido.changes}</a>
+                                    )
+                                ) : (
+                                    pedido.changes
+                                )}
+                            </td>
                         </tr>
                     </>
                 )}
@@ -97,9 +147,19 @@ const PedidoDetailsWeb = ({ pedido }) => {
                 <tr>
                     <td>Imágenes:</td>
                     <td>
-                        <a href={pedido.img} target='_blank' rel='noreferrer'>
-                            {pedido.img}
-                        </a>
+                        {isMoreThanOneUrl(pedido.img) ? (
+                            pedido.img.split(/[,;]+/).map(url => {
+                                return (
+                                    <a href={url} target='_blank' rel='noreferrer'>
+                                        {url}
+                                    </a>
+                                )
+                            })
+                        ) : (
+                            <a href={pedido.img} target='_blank' rel='noreferrer'>
+                                {pedido.img}
+                            </a>
+                        )}
                     </td>
                 </tr>
                 <tr>
