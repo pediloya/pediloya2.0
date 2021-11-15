@@ -30,8 +30,9 @@ export const AutorsProviders = ({ children }) => {
         const { key } = e
         const trimmedInput = emailsToCopy.trim()
         const duplicate = emailsToCopyArray.includes(emailsToCopy)
+        const empty = ''
         if (key === ',' || key === ' ') {
-            if (duplicate) {
+            if (duplicate || trimmedInput === empty) {
                 e.preventDefault()
                 return setEmailsToCopy('')
             }

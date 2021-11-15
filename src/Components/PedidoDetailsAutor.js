@@ -41,12 +41,12 @@ const PedidoDetailsAutor = ({ pedido }) => {
                         <td>
                             {pedido.autor.emailsToCopy.map((e, i) => {
                                 return pedido.autor.emailsToCopy.length === i + 1 ? (
-                                    <a key={i} href={`mailto:${e}`} target='_blank' rel='noreferrer'>
+                                    <a key={i + e} href={`mailto:${e}`} target='_blank' rel='noreferrer'>
                                         {e}
                                     </a>
                                 ) : (
                                     <>
-                                        <a key={i} href={`mailto:${e}`} target='_blank' rel='noreferrer'>
+                                        <a key={i + e} href={`mailto:${e}`} target='_blank' rel='noreferrer'>
                                             {e}
                                         </a>
                                         ,{' '}

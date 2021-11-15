@@ -40,6 +40,11 @@ const CrearPedidoInnerSomos = () => {
 
     const { somos: somosType } = types
 
+    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    useEffect(() => {
+        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+    }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
+
     let submitted = false
     const handleSubmit = e => {
         if (submitted) {
@@ -72,6 +77,7 @@ const CrearPedidoInnerSomos = () => {
                 method='POST'
                 onSubmit={() => (submitted = true)}
                 target='hidden_iframe'
+                className='formSomos'
             >
                 <input style={{ display: 'none' }} type='text' name='entry.1191510258' defaultValue={userName.toUpperCase()} />
                 <input
@@ -156,13 +162,7 @@ const CrearPedidoInnerSomos = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={
-                                emailsToCopyArray.length && !emailsToCopy
-                                    ? [...emailsToCopyArray, ...teamMemberEmails]
-                                    : emailsToCopyArray.length && emailsToCopy
-                                    ? [...emailsToCopyArray, emailsToCopy, ...teamMemberEmails]
-                                    : [...teamMemberEmails, emailsToCopy]
-                            }
+                            defaultValue={emailsToCopyGoogleForm}
                             name='entry.1253816459'
                         />
                         <hr />

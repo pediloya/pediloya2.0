@@ -282,7 +282,7 @@ footer p {
 .formGroup {
     margin-bottom: var(--spacerX2);
 }
-.formGroup > div {
+.formGroup > div:not(.form-check) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -617,6 +617,12 @@ footer p {
 .toggleWrapper .toggle span {
     margin-right: var(--spacerD2);
 }
+@media (min-width: 768px) {
+    .formSomos .withSuggestions.col-md-6 {
+        width: 100%;
+    }
+}
+
 .emailsToCopyWrapper {
     padding-top: var(--spacerD2);
     display: flex;
@@ -655,6 +661,7 @@ footer p {
 .withSuggestions .suggestions {
     display: none;
     position: absolute;
+    width: 100%;
     top: 100%;
     padding: 12px;
     background: var(--white);

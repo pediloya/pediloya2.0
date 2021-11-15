@@ -19,8 +19,6 @@ const PedidosPreview = ({ pedidos }) => {
                 setPedidosRedes(pedidosRedes => [...pedidosRedes, pedido])
             }
             if (pedido.pedido === 'disenio' && pedido.state !== 'closed') {
-                console.log(pedido.id)
-
                 if (pedidosDisenio.find(ped => ped.id === pedido.id)) return
                 setPedidosDisenio(pedidosDisenio => [...pedidosDisenio, pedido])
             }

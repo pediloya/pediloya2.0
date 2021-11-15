@@ -26,9 +26,16 @@ const AutorsSnippet = () => {
                         </p>
                         <p>
                             <strong>Emails para copia</strong>:{' '}
-                            {autors.emailsToCopy.length === 0 || autors.emailsToCopy[0] === ''
+                            {autors.emailsToCopy.length === 0 ||
+                            (autors.emailsToCopy[0] === '' && autors.emailsToCopy[1] === undefined)
                                 ? 'No hay emails para copia guardados'
-                                : autors.emailsToCopy.map(emailToCopy => emailToCopy + ' ')}
+                                : autors.emailsToCopy.map((emailToCopy, i) => {
+                                      return emailToCopy !== ''
+                                          ? autors.emailsToCopy.length === i + 1
+                                              ? emailToCopy
+                                              : emailToCopy + ', '
+                                          : null
+                                  })}
                         </p>
                     </>
                 )}

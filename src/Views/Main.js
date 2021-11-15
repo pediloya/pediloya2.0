@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import React, { useLayoutEffect } from 'react'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 
 import { useAuth } from '../Context/AuthContext'
 import AllMainProvider from '../Context/AllMainProvider'
@@ -13,6 +13,11 @@ import User from '../Views/User/User'
 
 const Main = () => {
     const { loading, userType } = useAuth()
+
+    const location = useLocation()
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    }, [location.pathname])
 
     return loading ? (
         'loading'

@@ -47,6 +47,11 @@ const CrearPedidoInnerDisenio = () => {
     } = useCrearPedido()
     const { autorName, autorEmail, emailsToCopyArray, emailsToCopy, handleNewAutor } = useAutors()
 
+    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    useEffect(() => {
+        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+    }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
+
     const crearHandler = () => {
         if (emailsToCopyArray.length && !emailsToCopy) {
             let autor = { autorName, autorEmail, emailsToCopy: emailsToCopyArray }
@@ -183,7 +188,7 @@ const CrearPedidoInnerDisenio = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={[...emailsToCopyArray, emailsToCopy, ...teamMemberEmails]}
+                            defaultValue={emailsToCopyGoogleForm}
                             name='entry.772927010'
                         />
                         <hr />

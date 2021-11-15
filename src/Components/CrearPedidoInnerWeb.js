@@ -68,6 +68,11 @@ const CrearPedidoInnerWeb = () => {
         })
     }, [teamMembers])
 
+    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    useEffect(() => {
+        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+    }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
+
     let submitted = false
     const handleSubmit = () => {
         if (submitted) {
@@ -87,8 +92,8 @@ const CrearPedidoInnerWeb = () => {
             <Form
                 action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSejJZ9OrpcZQK7TED4eYyCd3ZmKo4butT6PezUd4-0mlIUCeA/formResponse'
                 method='POST'
-                target='hidden_iframe'
                 onSubmit={() => (submitted = true)}
+                target='hidden_iframe'
             >
                 <input style={{ display: 'none' }} type='text' name='entry.1077437764' defaultValue={userName.toUpperCase()} />
                 <input
@@ -267,7 +272,7 @@ const CrearPedidoInnerWeb = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={[...emailsToCopyArray, emailsToCopy, ...teamMemberEmails]}
+                            defaultValue={emailsToCopyGoogleForm}
                             name='entry.1447671109'
                         />
                         <hr />

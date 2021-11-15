@@ -1,5 +1,5 @@
 import React from 'react'
-import { isValidURL } from '../Assets/Regex'
+import { isValidURL, isMoreThanOneUrl } from '../Assets/Regex'
 
 const PedidoDetailsRedes = ({ pedido }) => {
     return (

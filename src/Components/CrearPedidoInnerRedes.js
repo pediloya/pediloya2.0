@@ -46,6 +46,15 @@ const CrearPedidoInnerRedes = () => {
 
     const { redes: redesType } = types
 
+    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    useEffect(() => {
+        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+    }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
+
+    useEffect(() => {
+        console.log(emailsToCopyGoogleForm)
+    }, [emailsToCopyGoogleForm])
+
     const crearHandler = () => {
         if (emailsToCopyArray.length && !emailsToCopy) {
             let autor = { autorName, autorEmail, emailsToCopy: emailsToCopyArray }
@@ -178,7 +187,7 @@ const CrearPedidoInnerRedes = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={[...emailsToCopyArray, emailsToCopy, ...teamMemberEmails]}
+                            defaultValue={emailsToCopyGoogleForm}
                             name='entry.769180830'
                         />
                         <hr />

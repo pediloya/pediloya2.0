@@ -210,14 +210,14 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
                                 <small>
                                     <em>Se guardará la información que completes para poder utilizarla en un próximo pedido</em>
                                 </small>
-                            ) : autors?.emailsToCopy.length === 0 ? (
+                            ) : autors?.emailsToCopy.length === 0 || autors?.emailsToCopy === '' ? (
                                 <small>
                                     <em>Se guardará la información que completes para poder utilizarla en un próximo pedido</em>
                                 </small>
                             ) : (
                                 autors &&
-                                autors.emailsToCopy.map((email, id) => {
-                                    return (
+                                autors?.emailsToCopy.map((email, id) => {
+                                    return email !== '' ? (
                                         <div key={id} className='inputSuggestionWrapper'>
                                             <p
                                                 className='inputSuggestion'
@@ -236,7 +236,7 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
                                                 close
                                             </span>
                                         </div>
-                                    )
+                                    ) : null
                                 })
                             )}
                         </div>
