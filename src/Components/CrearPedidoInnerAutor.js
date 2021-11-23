@@ -87,7 +87,7 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
                                     </small>
                                 ) : (
                                     autors &&
-                                    autors?.autorName.map((name, id) => {
+                                    autors?.autorName?.map((name, id) => {
                                         return (
                                             <div key={id} className='inputSuggestionWrapper'>
                                                 <p
@@ -152,7 +152,7 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
                                     </small>
                                 ) : (
                                     autors &&
-                                    autors?.autorEmail.map((email, id) => {
+                                    autors?.autorEmail?.map((email, id) => {
                                         return (
                                             <div key={id} className='inputSuggestionWrapper'>
                                                 <p
@@ -210,13 +210,13 @@ const CrearPedidoInnerAutor = ({ secondSelect }) => {
                                 <small>
                                     <em>Se guardará la información que completes para poder utilizarla en un próximo pedido</em>
                                 </small>
-                            ) : autors?.emailsToCopy.length === 0 || autors?.emailsToCopy === '' ? (
+                            ) : autors?.emailsToCopy?.length === 0 || autors?.emailsToCopy === '' ? (
                                 <small>
                                     <em>Se guardará la información que completes para poder utilizarla en un próximo pedido</em>
                                 </small>
                             ) : (
                                 autors &&
-                                autors?.emailsToCopy.map((email, id) => {
+                                autors?.emailsToCopy?.map((email, id) => {
                                     return email !== '' ? (
                                         <div key={id} className='inputSuggestionWrapper'>
                                             <p
