@@ -45,10 +45,9 @@ const Home = () => {
                 </Col>
                 <Col lg={6} xl={4}>
                     <CuentaUpdateData hasToggle={true} />
-                    <CuentaNotificaciones hasToggle={true} />
                 </Col>
                 <Col lg={12} xl={4}>
-                    <CuentaTimeAhead hasToggle={true} />
+                    <CuentaNotificaciones hasToggle={true} />
                 </Col>
             </Row>
         </Container>

@@ -39,9 +39,6 @@ const Home = () => {
                 <Col md={4}>
                     <DescargasCard hasLink={true} />
                 </Col>
-                <Col md={4}>
-                    <AutorsSnippet />
-                </Col>
             </Row>
         </Container>
     )
