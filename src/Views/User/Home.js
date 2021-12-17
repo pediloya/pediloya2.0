@@ -25,7 +25,7 @@ const Home = () => {
                     para Somos.
                 </p>
                 <p>
-                    <Link to='/descargables'>Consulta</Link> los manuales de marca y contenidos web de GCBA.
+                    <Link to='/descargables'>Consulta </Link>los manuales de marca y contenidos web de GCBA.
                 </p>
                 <p>
                     Y conocé al <Link to='/equipo'>Equipo de Comunicación</Link> del Ministerio.{' '}
