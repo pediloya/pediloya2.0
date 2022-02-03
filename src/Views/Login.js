@@ -42,11 +42,12 @@ const Login = () => {
 
     useEffect(() => {
         const inLocalStorage = localStorage.getItem('userType')
+        console.log(defaultOptionValue)
         if (!inLocalStorage) return
-
+        setUserType(inLocalStorage)
         setDefatulOptionValue(inLocalStorage)
         setStorageCheck(true)
-    }, [])
+    }, [defaultOptionValue])
 
     useEffect(() => {
         if (!currentUser) return
@@ -129,6 +130,7 @@ const Login = () => {
                                             {options.map(({ value, type }) => {
                                                 return value === defaultOptionValue && type
                                             })}
+                                            {console.log(options)}
                                         </option>
                                     )}
                                 </Form.Control>
