@@ -34,10 +34,10 @@ export const AsignPedidosProvider = ({ children }) => {
     }, [currentUser])
 
     const [valideUsers, setValidUsers] = useState([])
-    console.log('AsignPedidosProvider => ', valideUsers)
-    console.log('AsignPedidosProvider / users => ', users)
+    /* console.log('AsignPedidosProvider => ', valideUsers)
+    console.log('AsignPedidosProvider / users => ', users) */
     useEffect(() => {
-        console.log('AsignPedidosProvider => ', valideUsers)
+        /* console.log('AsignPedidosProvider => ', valideUsers) */
         if (users.length === 0) return
         users.filter(user => {
             if (user.emailNotifications.find(noti => noti.on == true)) {
