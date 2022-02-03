@@ -32,16 +32,19 @@ const CuentaTimeAhead = ({ hasToggle }) => {
     ]
 
     useEffect(() => {
+        /* console.log('timeAheaDisenio => ', timeAheaDisenio) */
         if (!timeAheaDisenio.time) return
         setDisenioCheck(timeAheaDisenio.time)
     }, [timeAheaDisenio])
 
     useEffect(() => {
+        /* console.log('timeAheadWeb => ', timeAheadWeb) */
         if (!timeAheadWeb.time) return
         setWebCheck(timeAheadWeb.time)
     }, [timeAheadWeb])
 
     useEffect(() => {
+        /* console.log(' timeAheadRedes => ', timeAheadRedes) */
         if (!timeAheadRedes.time) return
         setRedesCheck(timeAheadRedes.time)
     }, [timeAheadRedes])

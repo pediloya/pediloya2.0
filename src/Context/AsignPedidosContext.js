@@ -31,10 +31,13 @@ export const AsignPedidosProvider = ({ children }) => {
         return () => {
             unsub()
         }
-    }, [])
+    }, [currentUser])
 
     const [valideUsers, setValidUsers] = useState([])
+    console.log('AsignPedidosProvider => ', valideUsers)
+    console.log('AsignPedidosProvider / users => ', users)
     useEffect(() => {
+        console.log('AsignPedidosProvider => ', valideUsers)
         if (users.length === 0) return
         users.filter(user => {
             if (user.emailNotifications.find(noti => noti.on == true)) {
@@ -43,7 +46,7 @@ export const AsignPedidosProvider = ({ children }) => {
         })
     }, [users])
 
-    const asignPedido = (pedido, user) => {
+    const asignPedido = async (pedido, user) => {
         console.log('pedido => ', pedido)
         console.log('user => ', user)
 
@@ -55,7 +58,7 @@ export const AsignPedidosProvider = ({ children }) => {
         const projectColection = projectFirestore.collection('pedidos')
         const projectDoc = projectColection.doc(pedido.id)
 
-        return projectDoc
+        return await projectDoc
             .update({
                 ...data,
             })

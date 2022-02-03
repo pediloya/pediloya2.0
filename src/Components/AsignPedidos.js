@@ -4,7 +4,6 @@ import { DropdownButton, Dropdown } from 'react-bootstrap'
 
 const AsignPedidos = ({ pedido }) => {
     const { valideUsers, asignPedido } = useAsignPedidosProvider()
-
     return (
         <DropdownButton title='Asignar pedido a' variant='primary' drop='down' id='dropdown-basic-button'>
             {valideUsers.map(valideUser => {

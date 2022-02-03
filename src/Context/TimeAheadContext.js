@@ -33,7 +33,7 @@ export const TimeAheadProvider = ({ children }) => {
         })
 
         return () => unsub()
-    }, [])
+    }, [currentUser])
 
     const changeTimeAhead = async data => {
         const projectColection = projectFirestore.collection('timeahead')
