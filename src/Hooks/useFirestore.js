@@ -121,17 +121,19 @@ export const newDocumentCustomId = async (collection, document, data, userId) =>
 
     const projectColection = projectFirestore.collection(collection)
     const projectDoc = projectColection.doc(document)
-    return projectDoc
-        .set({
-            ...data,
-            createAt,
-        })
-        .then(res => {
+    return (
+        projectDoc
+            .set({
+                ...data,
+                createAt,
+            })
+            /* .then(res => {
             console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        }) */
+            .catch(err => {
+                console.log(err)
+            })
+    )
 }
 
 export const updateDocument = async (collection, data, docId) => {
@@ -146,7 +148,7 @@ export const updateDocument = async (collection, data, docId) => {
             createAt,
         })
         .then(res => {
-            console.log(res)
+            /* console.log(res) */
         })
         .catch(err => console.log(err))
 }

@@ -45,12 +45,12 @@ const PedidoDetailsAutor = ({ pedido }) => {
                                         {e}
                                     </a>
                                 ) : (
-                                    <>
+                                    <React.Fragment key={i + e}>
                                         <a key={i + e} href={`mailto:${e}`} target='_blank' rel='noreferrer'>
                                             {e}
                                         </a>
                                         ,{' '}
-                                    </>
+                                    </React.Fragment>
                                 )
                             })}
                         </td>

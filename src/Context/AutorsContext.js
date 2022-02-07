@@ -70,13 +70,30 @@ export const AutorsProviders = ({ children }) => {
         setAutors(docs)
     }, [docs])
 
+    useEffect(() => {
+        if (!currentUser) return
+        if (docs.length === 0) {
+            newDocumentCustomId(
+                'autors',
+                `${currentUser.uid}-autors`,
+                {
+                    autorName: [],
+                    autorEmail: [],
+                    emailsToCopy: [],
+                    userId: currentUser.uid,
+                },
+                currentUser.uid
+            )
+        }
+    }, [])
+
     const handleNewAutor = autor => {
         const { autorName, autorEmail, emailsToCopy } = autor
         if (autors) {
             let data = {
-                autorName: autors.autorName.includes(autorName) ? autors.autorName : [...autors.autorName, autorName],
-                autorEmail: autors.autorEmail.includes(autorEmail) ? autors.autorEmail : [...autors.autorEmail, autorEmail],
-                emailsToCopy: [...autors.emailsToCopy.filter(val => !emailsToCopy.includes(val)), ...emailsToCopy],
+                autorName: autors?.autorName.includes(autorName) ? autors.autorName : [...autors.autorName, autorName],
+                autorEmail: autors?.autorEmail.includes(autorEmail) ? autors.autorEmail : [...autors.autorEmail, autorEmail],
+                emailsToCopy: [...autors?.emailsToCopy.filter(val => !emailsToCopy.includes(val)), ...emailsToCopy],
                 userId: currentUser.uid,
             }
             return updateDocument('autors', data, `${currentUser.uid}-autors`)

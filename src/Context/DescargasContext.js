@@ -67,14 +67,18 @@ export const DescargasProvider = ({ children }) => {
         storageRef
             .delete()
             .then(res => {
-                console.log(res)
+                /* console.log(res) */
             })
             .catch(error => {
                 console.log(error)
             })
         return docRef
             .delete()
-            .then(res => console.log(res))
+            .then(
+                res => {
+                    return res
+                } /* console.log(res) */
+            )
             .catch(err => console.log(err))
     }
 

@@ -47,8 +47,8 @@ export const AsignPedidosProvider = ({ children }) => {
     }, [users])
 
     const asignPedido = async (pedido, user) => {
-        console.log('pedido => ', pedido)
-        console.log('user => ', user)
+        /* console.log('pedido => ', pedido)
+        console.log('user => ', user) */
 
         let data = {
             ...pedido,

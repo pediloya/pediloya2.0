@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     function connectGoogleAccount() {
         linkWithRedirect(currentUser, googleProvider)
             .then(msg => {
-                console.log(msg)
+                /* console.log(msg) */
             })
             .catch(err => {
                 setGoogleLinkError('Esta cuenta ya está asociada a una cuenta de google')
@@ -57,13 +57,12 @@ export const AuthProvider = ({ children }) => {
 
     const [unlinkSuccess, setUnlinkSucces] = useState(false)
     function unLinkFromGoogle() {
-        console.log(currentUser)
         let googleProviderId = currentUser.providerData.find(id => id.providerId === 'google.com')
         console.log(googleProviderId.providerId)
         unlink(currentUser, googleProviderId.providerId)
             .then(msg => {
                 setUnlinkSucces(true)
-                console.log(msg)
+                /* console.log(msg) */
             })
             .catch(err => {
                 console.log(err)
@@ -93,7 +92,7 @@ export const AuthProvider = ({ children }) => {
                 logout()
             })
             .catch(err => {
-                console.log(err)
+                /* console.log(err) */
                 setUpdatePasswordError(err.code)
             })
     }

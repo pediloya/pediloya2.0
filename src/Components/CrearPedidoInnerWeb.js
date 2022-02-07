@@ -54,6 +54,7 @@ const CrearPedidoInnerWeb = () => {
             return handleNewPedidoWeb(autor)
         }
         let autor = { autorName, autorEmail, emailsToCopy: [emailsToCopy] }
+
         handleNewAutor(autor)
         return handleNewPedidoWeb(autor)
     }

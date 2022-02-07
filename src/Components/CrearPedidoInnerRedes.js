@@ -51,10 +51,6 @@ const CrearPedidoInnerRedes = () => {
         setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
     }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
 
-    useEffect(() => {
-        console.log(emailsToCopyGoogleForm)
-    }, [emailsToCopyGoogleForm])
-
     const crearHandler = () => {
         if (emailsToCopyArray.length && !emailsToCopy) {
             let autor = { autorName, autorEmail, emailsToCopy: emailsToCopyArray }

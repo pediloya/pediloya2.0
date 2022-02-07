@@ -85,7 +85,7 @@ const CuentaTimeAhead = ({ hasToggle }) => {
                 <div>
                     <span className='material-icons'>hourglass_full</span>Controlá el lapso de tiempo para cada tipo de pedido
                 </div>
-                {console.log(hasToggle)}
+
                 {hasToggle && (
                     <div onClick={() => toggle()}>
                         <span className='material-icons'>{isToggle ? 'expand_less' : 'expand_more'}</span>
