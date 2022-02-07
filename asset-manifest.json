@@ -4,17 +4,17 @@
     "static/js/0.51cc9bd1.chunk.js": "/pediloya2.0/static/js/0.51cc9bd1.chunk.js",
     "static/js/0.51cc9bd1.chunk.js.map": "/pediloya2.0/static/js/0.51cc9bd1.chunk.js.map",
     "main.css": "/pediloya2.0/static/css/main.7743d227.chunk.css",
-    "main.js": "/pediloya2.0/static/js/main.bb30b812.chunk.js",
-    "main.js.map": "/pediloya2.0/static/js/main.bb30b812.chunk.js.map",
-    "runtime-main.js": "/pediloya2.0/static/js/runtime-main.6ff9b655.js",
-    "runtime-main.js.map": "/pediloya2.0/static/js/runtime-main.6ff9b655.js.map",
+    "main.js": "/pediloya2.0/static/js/main.3ac99e53.chunk.js",
+    "main.js.map": "/pediloya2.0/static/js/main.3ac99e53.chunk.js.map",
+    "runtime-main.js": "/pediloya2.0/static/js/runtime-main.113bd136.js",
+    "runtime-main.js.map": "/pediloya2.0/static/js/runtime-main.113bd136.js.map",
     "static/css/3.f2512455.chunk.css": "/pediloya2.0/static/css/3.f2512455.chunk.css",
     "static/js/3.a7b277ab.chunk.js": "/pediloya2.0/static/js/3.a7b277ab.chunk.js",
     "static/js/3.a7b277ab.chunk.js.map": "/pediloya2.0/static/js/3.a7b277ab.chunk.js.map",
     "static/js/4.1bfc062d.chunk.js": "/pediloya2.0/static/js/4.1bfc062d.chunk.js",
     "static/js/4.1bfc062d.chunk.js.map": "/pediloya2.0/static/js/4.1bfc062d.chunk.js.map",
-    "static/js/5.370a4cde.chunk.js": "/pediloya2.0/static/js/5.370a4cde.chunk.js",
-    "static/js/5.370a4cde.chunk.js.map": "/pediloya2.0/static/js/5.370a4cde.chunk.js.map",
+    "static/js/5.d5cfb9a7.chunk.js": "/pediloya2.0/static/js/5.d5cfb9a7.chunk.js",
+    "static/js/5.d5cfb9a7.chunk.js.map": "/pediloya2.0/static/js/5.d5cfb9a7.chunk.js.map",
     "static/js/6.78e2d525.chunk.js": "/pediloya2.0/static/js/6.78e2d525.chunk.js",
     "static/js/6.78e2d525.chunk.js.map": "/pediloya2.0/static/js/6.78e2d525.chunk.js.map",
     "static/js/7.179a25f0.chunk.js": "/pediloya2.0/static/js/7.179a25f0.chunk.js",
@@ -27,10 +27,10 @@
     "static/media/App.css": "/pediloya2.0/static/media/glyphicons-halflings-regular.e3cab037.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.6ff9b655.js",
+    "static/js/runtime-main.113bd136.js",
     "static/css/3.f2512455.chunk.css",
     "static/js/3.a7b277ab.chunk.js",
     "static/css/main.7743d227.chunk.css",
-    "static/js/main.bb30b812.chunk.js"
+    "static/js/main.3ac99e53.chunk.js"
   ]
 }
