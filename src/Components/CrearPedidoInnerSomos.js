@@ -41,8 +41,11 @@ const CrearPedidoInnerSomos = () => {
     const { somos: somosType } = types
 
     const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    const emailsToCopyGoogleFormRef = useRef()
+
     useEffect(() => {
-        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+        let allEmails = [autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails].join()
+        setEmailsToCopyGoogleForm(allEmails)
     }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
 
     let submitted = false
@@ -162,8 +165,10 @@ const CrearPedidoInnerSomos = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={emailsToCopyGoogleForm}
+                            value={emailsToCopyGoogleForm}
                             name='entry.1253816459'
+                            onChange={() => void 0}
+                            ref={emailsToCopyGoogleFormRef}
                         />
                         <hr />
                         <Form.Group className='formGroup'>

@@ -10,6 +10,7 @@ import CrearPedidoStepDayP from './DayPicker'
 import CrearPedidoInnerAutor from './CrearPedidoInnerAutor'
 import CustomIcons from '../Assets/img/CustomIcons'
 import Loading from './Loading'
+import { useRef } from 'react'
 
 const CrearPedidoInnerWeb = () => {
     const { userName } = useAuth()
@@ -69,9 +70,11 @@ const CrearPedidoInnerWeb = () => {
         })
     }, [teamMembers])
 
-    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState('')
+    const emailsToCopyGoogleFormRef = useRef('')
     useEffect(() => {
-        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+        let allEmails = [autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails].join()
+        setEmailsToCopyGoogleForm(allEmails)
     }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
 
     let submitted = false
@@ -93,7 +96,9 @@ const CrearPedidoInnerWeb = () => {
             <Form
                 action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSejJZ9OrpcZQK7TED4eYyCd3ZmKo4butT6PezUd4-0mlIUCeA/formResponse'
                 method='POST'
-                onSubmit={() => (submitted = true)}
+                onSubmit={() => {
+                    submitted = true
+                }}
                 target='hidden_iframe'
             >
                 <input style={{ display: 'none' }} type='text' name='entry.1077437764' defaultValue={userName.toUpperCase()} />
@@ -273,8 +278,10 @@ const CrearPedidoInnerWeb = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={emailsToCopyGoogleForm}
+                            value={emailsToCopyGoogleForm}
                             name='entry.1447671109'
+                            onChange={() => void 0}
+                            ref={emailsToCopyGoogleFormRef}
                         />
                         <hr />
                         <Form.Group className='formGroup'>

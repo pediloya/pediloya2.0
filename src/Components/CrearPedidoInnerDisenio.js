@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../Context/AuthContext'
 import { useTeamNotificationsContext } from '../Context/TeamNotificationsContext'
@@ -48,8 +48,10 @@ const CrearPedidoInnerDisenio = () => {
     const { autorName, autorEmail, emailsToCopyArray, emailsToCopy, handleNewAutor } = useAutors()
 
     const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    const emailsToCopyGoogleFormRef = useRef()
     useEffect(() => {
-        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+        let allEmails = [autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails].join()
+        setEmailsToCopyGoogleForm(allEmails)
     }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
 
     const crearHandler = () => {
@@ -188,7 +190,9 @@ const CrearPedidoInnerDisenio = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={emailsToCopyGoogleForm}
+                            value={emailsToCopyGoogleForm}
+                            onChange={() => void 0}
+                            ref={emailsToCopyGoogleFormRef}
                             name='entry.772927010'
                         />
                         <hr />

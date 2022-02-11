@@ -10,6 +10,7 @@ import CrearPedidoStepDayP from './DayPicker'
 import CrearPedidoInnerAutor from '../Components/CrearPedidoInnerAutor'
 import CustomIcons from '../Assets/img/CustomIcons'
 import Loading from './Loading'
+import { useRef } from 'react'
 
 const CrearPedidoInnerRedes = () => {
     const { teamMembers } = useTeamNotificationsContext()
@@ -47,8 +48,10 @@ const CrearPedidoInnerRedes = () => {
     const { redes: redesType } = types
 
     const [emailsToCopyGoogleForm, setEmailsToCopyGoogleForm] = useState([])
+    const emailsToCopyGoogleFormRef = useRef()
     useEffect(() => {
-        setEmailsToCopyGoogleForm([autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails])
+        let allEmails = [autorEmail, ...emailsToCopyArray, emailsToCopy, ...teamMemberEmails].join()
+        setEmailsToCopyGoogleForm(allEmails)
     }, [autorEmail, emailsToCopyArray, emailsToCopy, teamMemberEmails])
 
     const crearHandler = () => {
@@ -183,8 +186,10 @@ const CrearPedidoInnerRedes = () => {
                         <input
                             style={{ display: 'none' }}
                             type='text'
-                            defaultValue={emailsToCopyGoogleForm}
+                            value={emailsToCopyGoogleForm}
+                            onChange={() => void 0}
                             name='entry.769180830'
+                            ref={emailsToCopyGoogleFormRef}
                         />
                         <hr />
                         <Form.Group className='formGroup'>
