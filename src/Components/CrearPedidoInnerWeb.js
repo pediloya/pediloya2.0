@@ -210,6 +210,7 @@ const CrearPedidoInnerWeb = () => {
                                 type='text'
                                 {...bindLinkToModify}
                                 placeholder='www.buenosaires.gob.ar/gobierno/...'
+                                required
                             />
 
                             <small>Para ingresar más de un enlace hacelo separandolos con un coma (,) o punto y coma (;)</small>
