@@ -15,7 +15,7 @@ const PedidosDetailsState = ({ pedido }) => {
         let now = new Date().getTime()
         let diff = now - stateChange
         let days = Math.floor(diff / (24 * 60 * 60 * 1000))
-        if (days < 8) return
+        if (days < 4) return
         if (pedido.state === 'finalized') autoCloseState(pedido)
     }, [])
 
