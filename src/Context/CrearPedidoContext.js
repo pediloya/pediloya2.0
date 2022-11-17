@@ -265,6 +265,7 @@ export const CrearPedidoProvider = ({ children }) => {
     }
 
     const handleNewPedidoRedes = async autor => {
+        if (!dayPicked) return setError('Seleccioná una fecha')
         setUploading(true)
         const data = {
             pedido: 'redes',
