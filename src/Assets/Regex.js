@@ -7,7 +7,8 @@ export const isEmail = email => {
 }
 
 export const isMoreThanOneUrl = string => {
-    if (string.includes(';') || string.includes(',')) return true
+    if (!string) return
+    if (string?.includes(';') || string?.includes(',')) return true
     return false
 }
 
